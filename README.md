@@ -1,33 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kali Linux Academy
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/678c92ac-82dd-45b6-841f-f69eeb0d9b0c/deploy-status)](https://app.netlify.com/projects/ani-dianda/deploys)
+
+Production-ready full-stack Next.js application for learning cybersecurity with Kali Linux, integrated with Supabase, TailwindCSS 4, and Radix UI.
+
+## 🚀 Live Demo
+
+Visit the deployed site: **[ani-dianda.netlify.app](https://ani-dianda.netlify.app)**
 
 ## Getting Started
 
-First, run the development server:
+### Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build
+pnpm start
+```
 
-## Learn More
+## 📚 Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Courses**: Introduction à Kali Linux, Network Testing, WPA2 Cracking, WPA3, Exercises
+- **Authentication**: Supabase integration with login/register
+- **Dark/Light Theme**: System-aware theme switching with next-themes
+- **Responsive Design**: Mobile-first UI with TailwindCSS 4
+- **Security Headers**: Comprehensive security headers configured
+- **Type-Safe API**: Standardized API response patterns with TypeScript
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/              # Next.js App Router pages
+├── components/       # React components
+├── hooks/           # Custom React hooks
+├── integrations/    # Supabase configuration
+├── lib/             # Utilities & helpers
+└── utils/           # Shared functions
+```
+
+## 🔒 Security
+
+- ESLint & TypeScript strict mode enabled
+- Security headers (CSP, X-Frame-Options, XSS protection)
+- Server-side API route protection
+- Environment variables validation
+
+## 📝 Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Supabase Documentation](https://supabase.com/docs)
+- [TailwindCSS Documentation](https://tailwindcss.com)
+- [Radix UI Documentation](https://radix-ui.com)
+
+## 📄 License
+
+MIT
 
 ## Deploy on Vercel
 
