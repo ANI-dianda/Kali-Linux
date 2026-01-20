@@ -256,7 +256,7 @@ export default function WiFiSecurityPage() {
                         </div>
                       </CardHeader>
                       <CardContent className="space-y-4">
-                        <p className="text-muted-foreground">{subsection.content}</p>
+                        <p className="text-muted-foreground">{(subsection as any).content}</p>
                         
                         {(subsection as any).commands && (
                           <div className="space-y-2">
