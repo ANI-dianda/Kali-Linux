@@ -89,8 +89,8 @@ export default function WiFiSecurityPage() {
             content: "SAE remplace PSK, PMF chiffre les trames de gestion, Forward Secrecy protège les communications passées."
           },
           {
-            title: "WPS : La Faiblesse Cachée",
-            content: "Code PIN de seulement 7 chiffres significatifs, vérification séparée des deux moitiés. Attaque brute-force en quelques heures.",
+            title: "WPS : La Faiblesse Cachée - DANGER CRITIQUE",
+            content: "WPS (Wi-Fi Protected Setup) facilite la connexion avec un code PIN, mais contient une vulnérabilité MAJEURE : le PIN n'a que 7 chiffres significatifs et le routeur vérifie les deux moitiés séparément. Résultat : seulement 11,000 combinaisons possibles au lieu de 100 millions. Attaque brute-force réussie en quelques heures maximum.",
             status: "danger"
           }
         ]
@@ -374,33 +374,63 @@ export default function WiFiSecurityPage() {
         </section>
 
         {/* Recommandations finales */}
-        <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-green-200">
+        <Card className="bg-gradient-to-r from-blue-50 to-green-50 border-blue-200">
           <CardHeader>
-            <CardTitle className="text-2xl flex items-center gap-2">
-              <Shield className="h-6 w-6 text-green-600" />
+            <CardTitle className="text-2xl flex items-center gap-2 text-gray-900">
+              <Shield className="h-6 w-6 text-blue-600" />
               Recommandations Finales
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="font-semibold text-green-800 mb-2">Pour sécuriser :</h4>
-                <ul className="space-y-1 text-sm">
-                  <li>✅ Utilisez WPA3 si possible</li>
-                  <li>✅ Mot de passe fort (16+ caractères)</li>
-                  <li>✅ Désactivez WPS</li>
-                  <li>✅ Mettez à jour le firmware</li>
-                  <li>✅ Activez PMF</li>
+              <div className="bg-white p-4 rounded-lg border border-green-200">
+                <h4 className="font-semibold text-green-700 mb-3 text-lg">✅ Pour sécuriser :</h4>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    Utilisez WPA3 si possible
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    Mot de passe fort (16+ caractères)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    Désactivez WPS complètement
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    Mettez à jour le firmware
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    Activez PMF (Protected Management Frames)
+                  </li>
                 </ul>
               </div>
-              <div>
-                <h4 className="font-semibold text-red-800 mb-2">À éviter :</h4>
-                <ul className="space-y-1 text-sm">
-                  <li>❌ WEP (totalement compromis)</li>
-                  <li>❌ WPS activé</li>
-                  <li>❌ Mots de passe faibles</li>
-                  <li>❌ SSID révélant le modèle</li>
-                  <li>❌ Firmware obsolète</li>
+              <div className="bg-white p-4 rounded-lg border border-red-200">
+                <h4 className="font-semibold text-red-700 mb-3 text-lg">❌ À éviter absolument :</h4>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-center gap-2">
+                    <XCircle className="h-4 w-4 text-red-600" />
+                    WEP (totalement compromis)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <XCircle className="h-4 w-4 text-red-600" />
+                    WPS activé (vulnérable)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <XCircle className="h-4 w-4 text-red-600" />
+                    Mots de passe faibles
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <XCircle className="h-4 w-4 text-red-600" />
+                    SSID révélant le modèle du routeur
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <XCircle className="h-4 w-4 text-red-600" />
+                    Firmware obsolète
+                  </li>
                 </ul>
               </div>
             </div>
