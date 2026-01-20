@@ -1,12 +1,14 @@
 import * as React from "react"
+import Link from "next/link"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
   variant?: 'default' | 'outline'
+  href?: string
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, asChild, variant = 'default', ...props }, ref) => {
+  ({ className, asChild, variant = 'default', children, href, ...props }, ref) => {
     const baseClasses = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2"
     
     const variantClasses = {
@@ -17,13 +19,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const classes = `${baseClasses} ${variantClasses[variant]} ${className || ''}`
     
     if (asChild) {
-      return React.cloneElement(
-        props.children as React.ReactElement,
-        {
-          ref,
-          className: classes,
-          ...props
-        }
+      return <div className={classes}>{children}</div>
+    }
+    
+    if (href) {
+      return (
+        <Link href={href} className={classes}>
+          {children}
+        </Link>
       )
     }
     
@@ -32,7 +35,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={classes}
         {...props}
-      />
+      >
+        {children}
+      </button>
     )
   }
 )
