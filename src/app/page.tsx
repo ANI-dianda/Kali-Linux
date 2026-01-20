@@ -16,6 +16,12 @@ export default function Home() {
       href: "/courses/introduction"
     },
     {
+      icon: Shield,
+      title: "Fondamentaux du Hacking",
+      description: "Apprenez les concepts de base du hacking éthique et de la cybersécurité",
+      href: "/courses/hacking-fundamentals"
+    },
+    {
       icon: Network,
       title: "Tester son réseau",
       description: "Apprenez à analyser et tester la sécurité de votre réseau avec nmap et Wireshark",
