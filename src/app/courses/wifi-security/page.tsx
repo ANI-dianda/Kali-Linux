@@ -248,23 +248,23 @@ export default function WiFiSecurityPage() {
                   </p>
 
                   {section.content.subsections?.map((subsection, index) => (
-                    <Card key={index} className={`border-l-4 ${getStatusColor(subsection.status || 'default')}`}>
+                    <Card key={index} className={`border-l-4 ${getStatusColor((subsection as any).status || 'default')}`}>
                       <CardHeader>
                         <div className="flex items-center gap-2">
-                          {subsection.status && getStatusIcon(subsection.status)}
+                          {(subsection as any).status && getStatusIcon((subsection as any).status)}
                           <CardTitle className="text-lg">{subsection.title}</CardTitle>
                         </div>
                       </CardHeader>
                       <CardContent className="space-y-4">
                         <p className="text-muted-foreground">{subsection.content}</p>
                         
-                        {subsection.commands && (
+                        {(subsection as any).commands && (
                           <div className="space-y-2">
                             <h5 className="font-semibold flex items-center gap-2">
                               <Terminal className="h-4 w-4" />
                               Commandes :
                             </h5>
-                            {subsection.commands.map((cmd, cmdIndex) => (
+                            {(subsection as any).commands.map((cmd: string, cmdIndex: number) => (
                               <div key={cmdIndex} className="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-sm">
                                 <span className="text-gray-500">$ </span>{cmd}
                               </div>
@@ -272,11 +272,11 @@ export default function WiFiSecurityPage() {
                           </div>
                         )}
 
-                        {subsection.defense && (
+                        {(subsection as any).defense && (
                           <Alert>
                             <Shield className="h-4 w-4" />
                             <AlertDescription>
-                              <strong>Défense :</strong> {subsection.defense}
+                              <strong>Défense :</strong> {(subsection as any).defense}
                             </AlertDescription>
                           </Alert>
                         )}
@@ -293,7 +293,7 @@ export default function WiFiSecurityPage() {
                           </CardHeader>
                           <CardContent>
                             <ul className="space-y-2">
-                              {subsection.items?.map((item, itemIndex) => (
+                              {(subsection as any).items?.map((item: string, itemIndex: number) => (
                                 <li key={itemIndex} className="flex items-start gap-2">
                                   <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
                                   <span className="text-sm">{item}</span>
