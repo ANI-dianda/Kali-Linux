@@ -79,9 +79,9 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
       </header>
 
       <div className="w-full px-4 py-8 lg:px-8">
-        <div className="flex gap-8">
+        <div className="flex gap-8 max-w-7xl mx-auto">
           {/* Sidebar Navigation - Desktop */}
-          <aside className="hidden lg:block w-80 shrink-0">
+          <aside className="hidden lg:block w-72 shrink-0">
             <div className="sticky top-24 space-y-4">
               <h3 className="font-semibold text-lg mb-4">Cours</h3>
               {NavigationContent}
@@ -89,9 +89,11 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1">
+          <main className="flex-1 min-w-0">
             <h1 className="text-4xl font-bold mb-8">{title}</h1>
-            {children}
+            <div className="max-w-4xl">
+              {children}
+            </div>
           </main>
         </div>
       </div>

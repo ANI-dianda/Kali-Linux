@@ -1,354 +1,374 @@
-
 'use client';
 
 import { CourseLayout } from "@/components/CourseLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { CheckCircle2, Circle, Info, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { 
+  CheckCircle2, 
+  XCircle, 
+  RotateCcw, 
+  Trophy,
+  Target,
+  Brain,
+  Zap
+} from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
+
+interface Question {
+  id: number;
+  question: string;
+  options: string[];
+  correct: number;
+  explanation: string;
+  category: string;
+}
 
 export default function ExercisesPage() {
-  const [completedExercises, setCompletedExercises] = useState<string[]>([]);
+  const [currentQuiz, setCurrentQuiz] = useState<number | null>(null);
+  const [answers, setAnswers] = useState<{[key: number]: number}>({});
+  const [showResults, setShowResults] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
-  useEffect(() => {
-    const saved = localStorage.getItem('completedExercises');
-    if (saved) {
-      setCompletedExercises(JSON.parse(saved));
-    }
-  }, []);
-
-  const toggleExercise = (id: string) => {
-    const newCompleted = completedExercises.includes(id)
-      ? completedExercises.filter(e => e !== id)
-      : [...completedExercises, id];
-    
-    setCompletedExercises(newCompleted);
-    localStorage.setItem('completedExercises', JSON.stringify(newCompleted));
-  };
-
-  const exercises = [
+  const quizzes = [
     {
-      id: 'ex1',
-      title: 'Scanner un réseau local',
-      difficulty: 'Débutant',
-      time: '15 minutes',
-      objectives: [
-        'Identifier votre plage d\'adresses IP',
-        'Utiliser nmap pour découvrir les hôtes actifs',
-        'Lister tous les appareils connectés',
-        'Identifier les services ouverts sur un hôte'
-      ],
-      steps: [
-        'Ouvrez un terminal dans Kali Linux',
-        'Identifiez votre adresse IP avec `ip addr` ou `ifconfig`',
-        'Lancez un scan ping : `sudo nmap -sn 192.168.1.0/24`',
-        'Notez les adresses IP découvertes',
-        'Scannez un hôte spécifique : `sudo nmap -sV 192.168.1.1`',
-        'Analysez les résultats : ports ouverts, services, versions'
-      ],
-      validation: [
-        'Vous avez identifié au moins 3 appareils sur le réseau',
-        'Vous avez listé les ports ouverts d\'au moins un appareil',
-        'Vous comprenez la différence entre un scan ping et un scan de ports'
+      id: 1,
+      title: "Quiz Kali Linux - Bases",
+      icon: Target,
+      difficulty: "Débutant",
+      questions: [
+        {
+          id: 1,
+          question: "Quelle est la distribution Linux spécialisée en tests de pénétration ?",
+          options: ["Ubuntu", "Kali Linux", "CentOS", "Debian"],
+          correct: 1,
+          explanation: "Kali Linux est spécifiquement conçu pour les tests de pénétration et la sécurité informatique.",
+          category: "Bases"
+        },
+        {
+          id: 2,
+          question: "Quel outil Kali permet de scanner les ports d'un réseau ?",
+          options: ["Wireshark", "Nmap", "Metasploit", "John"],
+          correct: 1,
+          explanation: "Nmap (Network Mapper) est l'outil de référence pour scanner les ports et découvrir les services.",
+          category: "Outils"
+        },
+        {
+          id: 3,
+          question: "Que signifie l'acronyme WPA ?",
+          options: ["Wireless Protected Access", "Web Protocol Access", "Windows Password Auth", "WiFi Public Access"],
+          correct: 0,
+          explanation: "WPA signifie Wireless Protected Access, un protocole de sécurité pour les réseaux WiFi.",
+          category: "Sécurité"
+        }
       ]
     },
     {
-      id: 'ex2',
-      title: 'Capturer et analyser du trafic avec Wireshark',
-      difficulty: 'Débutant',
-      time: '20 minutes',
-      objectives: [
-        'Lancer Wireshark et sélectionner une interface',
-        'Capturer du trafic ICMP (ping)',
-        'Appliquer des filtres',
-        'Analyser les paquets capturés'
-      ],
-      steps: [
-        'Lancez Wireshark : `sudo wireshark`',
-        'Sélectionnez votre interface réseau (eth0, wlan0)',
-        'Cliquez sur "Start" pour commencer la capture',
-        'Dans un nouveau terminal, faites un ping : `ping -c 10 8.8.8.8`',
-        'Dans Wireshark, appliquez le filtre : `icmp`',
-        'Analysez les paquets Echo Request et Echo Reply',
-        'Examinez les détails : TTL, sequence number, temps de réponse',
-        'Arrêtez la capture et sauvegardez le fichier'
-      ],
-      validation: [
-        'Vous avez capturé au moins 10 paquets ICMP',
-        'Vous comprenez la différence entre Echo Request et Echo Reply',
-        'Vous savez appliquer des filtres de base dans Wireshark'
+      id: 2,
+      title: "Quiz Hacking - Concepts",
+      icon: Brain,
+      difficulty: "Intermédiaire",
+      questions: [
+        {
+          id: 4,
+          question: "Qu'est-ce qu'un cheval de Troie ?",
+          options: ["Un virus qui se réplique", "Un malware déguisé en logiciel légitime", "Un outil de chiffrement", "Un type de pare-feu"],
+          correct: 1,
+          explanation: "Un cheval de Troie est un malware qui se déguise en logiciel utile pour tromper l'utilisateur.",
+          category: "Malware"
+        },
+        {
+          id: 5,
+          question: "Quelle technique exploite la psychologie humaine ?",
+          options: ["Buffer overflow", "Ingénierie sociale", "SQL injection", "DDoS"],
+          correct: 1,
+          explanation: "L'ingénierie sociale exploite les faiblesses humaines plutôt que techniques.",
+          category: "Techniques"
+        },
+        {
+          id: 6,
+          question: "Que fait un keylogger ?",
+          options: ["Chiffre les données", "Enregistre les frappes clavier", "Bloque les connexions", "Scanne les ports"],
+          correct: 1,
+          explanation: "Un keylogger enregistre secrètement toutes les frappes clavier de l'utilisateur.",
+          category: "Malware"
+        }
       ]
     },
     {
-      id: 'ex3',
-      title: 'Scanner les réseaux Wi-Fi',
-      difficulty: 'Intermédiaire',
-      time: '25 minutes',
-      objectives: [
-        'Activer le mode monitor sur votre carte Wi-Fi',
-        'Scanner les réseaux Wi-Fi environnants',
-        'Identifier les types de chiffrement',
-        'Analyser la puissance du signal'
-      ],
-      steps: [
-        'Vérifiez votre interface Wi-Fi : `sudo airmon-ng`',
-        'Arrêtez les processus interférents : `sudo airmon-ng check kill`',
-        'Activez le mode monitor : `sudo airmon-ng start wlan0`',
-        'Vérifiez l\'activation : `iwconfig` (devrait afficher wlan0mon)',
-        'Lancez le scan : `sudo airodump-ng wlan0mon`',
-        'Observez les réseaux détectés : BSSID, canal, chiffrement, ESSID',
-        'Notez les différents types de chiffrement (WPA2, WPA3, WEP)',
-        'Arrêtez avec Ctrl+C et désactivez le mode monitor : `sudo airmon-ng stop wlan0mon`'
-      ],
-      validation: [
-        'Vous avez activé le mode monitor avec succès',
-        'Vous avez identifié au moins 5 réseaux Wi-Fi',
-        'Vous comprenez les différences entre WPA2, WPA3 et WEP',
-        'Vous avez désactivé le mode monitor correctement'
-      ]
-    },
-    {
-      id: 'ex4',
-      title: 'Capturer un handshake WPA2',
-      difficulty: 'Intermédiaire',
-      time: '30 minutes',
-      objectives: [
-        'Capturer un handshake WPA2 sur votre propre réseau',
-        'Comprendre le processus de capture',
-        'Vérifier la validité du handshake'
-      ],
-      steps: [
-        'Activez le mode monitor : `sudo airmon-ng start wlan0`',
-        'Scannez les réseaux : `sudo airodump-ng wlan0mon`',
-        'Identifiez VOTRE réseau (BSSID et canal)',
-        'Lancez la capture ciblée : `sudo airodump-ng -c [CANAL] --bssid [BSSID] -w handshake wlan0mon`',
-        'Attendez qu\'un appareil se connecte (ou reconnectez un de vos appareils)',
-        'Observez le message "WPA handshake" en haut à droite',
-        'Arrêtez la capture avec Ctrl+C',
-        'Vérifiez le handshake : `aircrack-ng handshake-01.cap`'
-      ],
-      validation: [
-        'Vous avez capturé un handshake valide',
-        'Le fichier .cap contient bien le handshake (vérifié avec aircrack-ng)',
-        'Vous comprenez pourquoi le handshake est nécessaire pour le cracking'
-      ]
-    },
-    {
-      id: 'ex5',
-      title: 'Tenter de cracker WPA2 (réseau de test)',
-      difficulty: 'Avancé',
-      time: '45 minutes',
-      objectives: [
-        'Utiliser aircrack-ng avec une wordlist',
-        'Comprendre le processus de cracking',
-        'Analyser les résultats'
-      ],
-      steps: [
-        'Assurez-vous d\'avoir un handshake capturé (exercice précédent)',
-        'Localisez rockyou.txt : `locate rockyou.txt`',
-        'Décompressez si nécessaire : `sudo gunzip /usr/share/wordlists/rockyou.txt.gz`',
-        'Lancez aircrack-ng : `sudo aircrack-ng -w /usr/share/wordlists/rockyou.txt -b [BSSID] handshake-01.cap`',
-        'Observez la progression du cracking',
-        'Si le mot de passe est trouvé, notez-le',
-        'Si non trouvé, essayez avec une wordlist plus petite ou créez-en une personnalisée'
-      ],
-      validation: [
-        'Vous avez lancé aircrack-ng avec succès',
-        'Vous comprenez pourquoi certains mots de passe sont trouvés et d\'autres non',
-        'Vous réalisez l\'importance d\'un mot de passe fort'
-      ]
-    },
-    {
-      id: 'ex6',
-      title: 'Analyser WPA3 dans Wireshark',
-      difficulty: 'Avancé',
-      time: '30 minutes',
-      objectives: [
-        'Capturer du trafic WPA3',
-        'Observer le protocole SAE',
-        'Comparer avec WPA2'
-      ],
-      steps: [
-        'Activez le mode monitor : `sudo airmon-ng start wlan0`',
-        'Identifiez un réseau WPA3 : `sudo airodump-ng wlan0mon`',
-        'Capturez le trafic : `sudo airodump-ng -c [CANAL] --bssid [BSSID] -w wpa3 wlan0mon`',
-        'Attendez qu\'un appareil se connecte',
-        'Ouvrez la capture dans Wireshark : `wireshark wpa3-01.cap`',
-        'Appliquez le filtre : `wlan.fc.type_subtype == 0x0b`',
-        'Observez les trames SAE (commit et confirm)',
-        'Comparez avec une capture WPA2 (4-way handshake)'
-      ],
-      validation: [
-        'Vous avez capturé des trames SAE',
-        'Vous comprenez la différence entre SAE et le 4-way handshake',
-        'Vous réalisez pourquoi WPA3 est plus sécurisé'
+      id: 3,
+      title: "Quiz Sécurité - Avancé",
+      icon: Zap,
+      difficulty: "Avancé",
+      questions: [
+        {
+          id: 7,
+          question: "Quelle est la différence entre chiffrement symétrique et asymétrique ?",
+          options: ["Aucune différence", "Symétrique = 1 clé, Asymétrique = 2 clés", "Symétrique = plus sûr", "Asymétrique = plus rapide"],
+          correct: 1,
+          explanation: "Le chiffrement symétrique utilise une seule clé, l'asymétrique utilise une paire de clés (publique/privée).",
+          category: "Cryptographie"
+        },
+        {
+          id: 8,
+          question: "Qu'est-ce qu'un IDS ?",
+          options: ["Internet Data Service", "Intrusion Detection System", "Internal Database Server", "IP Discovery Scanner"],
+          correct: 1,
+          explanation: "Un IDS (Intrusion Detection System) surveille et détecte les activités suspectes sur un réseau.",
+          category: "Sécurité"
+        },
+        {
+          id: 9,
+          question: "Quel protocole sécurise les transactions web ?",
+          options: ["HTTP", "FTP", "SSL/TLS", "SMTP"],
+          correct: 2,
+          explanation: "SSL/TLS chiffre les communications web pour sécuriser les transactions en ligne.",
+          category: "Protocoles"
+        }
       ]
     }
   ];
 
-  const completionRate = Math.round((completedExercises.length / exercises.length) * 100);
+  const startQuiz = (quizId: number) => {
+    setCurrentQuiz(quizId);
+    setAnswers({});
+    setShowResults(false);
+    setSelectedAnswer(null);
+  };
 
-  return (
-    <CourseLayout title="Exercices pratiques">
-      <div className="space-y-8">
-        {/* Introduction */}
-        <section className="space-y-4">
-          <p className="text-lg text-muted-foreground">
-            Mettez en pratique vos connaissances avec ces exercices progressifs. 
-            Chaque exercice est conçu pour renforcer votre compréhension des concepts 
-            vus dans les cours précédents.
-          </p>
+  const selectAnswer = (questionId: number, answerIndex: number) => {
+    setAnswers(prev => ({...prev, [questionId]: answerIndex}));
+    setSelectedAnswer(answerIndex);
+  };
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Target className="h-6 w-6 text-primary" />
-                Votre progression
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span>{completedExercises.length} / {exercises.length} exercices complétés</span>
-                  <span className="font-semibold">{completionRate}%</span>
-                </div>
-                <div className="w-full bg-muted rounded-full h-2">
-                  <div 
-                    className="bg-primary h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${completionRate}%` }}
-                  />
-                </div>
+  const submitQuiz = () => {
+    setShowResults(true);
+  };
+
+  const resetQuiz = () => {
+    setCurrentQuiz(null);
+    setAnswers({});
+    setShowResults(false);
+    setSelectedAnswer(null);
+  };
+
+  const getCurrentQuiz = () => quizzes.find(q => q.id === currentQuiz);
+  const getScore = () => {
+    const quiz = getCurrentQuiz();
+    if (!quiz) return 0;
+    let correct = 0;
+    quiz.questions.forEach(q => {
+      if (answers[q.id] === q.correct) correct++;
+    });
+    return Math.round((correct / quiz.questions.length) * 100);
+  };
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case "Débutant": return "bg-green-100 text-green-800";
+      case "Intermédiaire": return "bg-yellow-100 text-yellow-800";
+      case "Avancé": return "bg-red-100 text-red-800";
+      default: return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  if (currentQuiz) {
+    const quiz = getCurrentQuiz();
+    if (!quiz) return null;
+
+    return (
+      <CourseLayout title={`Quiz: ${quiz.title}`}>
+        <div className="max-w-4xl mx-auto space-y-6">
+          {!showResults ? (
+            <>
+              <div className="flex items-center justify-between">
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${getDifficultyColor(quiz.difficulty)}`}>
+                  {quiz.difficulty}
+                </span>
+                <Button variant="outline" onClick={resetQuiz}>
+                  ← Retour aux quiz
+                </Button>
               </div>
-            </CardContent>
-          </Card>
 
-          <Alert>
-            <Info className="h-4 w-4" />
-            <AlertDescription>
-              <strong>Conseil :</strong> Suivez les exercices dans l'ordre. Chaque exercice 
-              s'appuie sur les compétences acquises dans les précédents.
-            </AlertDescription>
-          </Alert>
-        </section>
+              {quiz.questions.map((question, index) => (
+                <Card key={question.id} className="border-l-4 border-l-primary">
+                  <CardHeader>
+                    <CardTitle className="text-lg">
+                      Question {index + 1}: {question.question}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {question.options.map((option, optionIndex) => (
+                      <button
+                        key={optionIndex}
+                        onClick={() => selectAnswer(question.id, optionIndex)}
+                        className={`w-full p-3 text-left rounded-lg border transition-colors ${
+                          answers[question.id] === optionIndex
+                            ? 'border-primary bg-primary/10'
+                            : 'border-gray-200 hover:border-primary/50'
+                        }`}
+                      >
+                        <span className="font-medium mr-2">{String.fromCharCode(65 + optionIndex)}.</span>
+                        {option}
+                      </button>
+                    ))}
+                  </CardContent>
+                </Card>
+              ))}
 
-        {/* Liste des exercices */}
-        <section className="space-y-6">
-          {exercises.map((exercise, index) => {
-            const isCompleted = completedExercises.includes(exercise.id);
-            const difficultyColor = 
-              exercise.difficulty === 'Débutant' ? 'text-green-600' :
-              exercise.difficulty === 'Intermédiaire' ? 'text-orange-600' :
-              'text-red-600';
-
-            return (
-              <Card key={exercise.id} className={isCompleted ? 'border-green-600' : ''}>
+              <div className="flex justify-center">
+                <Button 
+                  onClick={submitQuiz}
+                  disabled={Object.keys(answers).length !== quiz.questions.length}
+                  className="px-8"
+                >
+                  Voir les résultats
+                </Button>
+              </div>
+            </>
+          ) : (
+            <div className="space-y-6">
+              <Card className="text-center border-primary/20">
                 <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="mt-1">
-                        {isCompleted ? (
-                          <CheckCircle2 className="h-6 w-6 text-green-600" />
-                        ) : (
-                          <Circle className="h-6 w-6 text-muted-foreground" />
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <CardTitle className="text-xl mb-2">
-                          Exercice {index + 1} : {exercise.title}
-                        </CardTitle>
-                        <div className="flex gap-4 text-sm text-muted-foreground">
-                          <span className={difficultyColor}>
-                            {exercise.difficulty}
-                          </span>
-                          <span>⏱️ {exercise.time}</span>
+                  <div className="flex justify-center mb-4">
+                    <Trophy className="h-16 w-16 text-yellow-500" />
+                  </div>
+                  <CardTitle className="text-2xl">
+                    Score: {getScore()}%
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getScore() >= 80 ? "Excellent travail ! 🎉" : 
+                     getScore() >= 60 ? "Bien joué ! 👍" : 
+                     "Continuez vos efforts ! 💪"}
+                  </p>
+                </CardContent>
+              </Card>
+
+              {quiz.questions.map((question, index) => {
+                const userAnswer = answers[question.id];
+                const isCorrect = userAnswer === question.correct;
+                
+                return (
+                  <Card key={question.id} className={`border-l-4 ${isCorrect ? 'border-l-green-500' : 'border-l-red-500'}`}>
+                    <CardHeader>
+                      <div className="flex items-start gap-3">
+                        {isCorrect ? 
+                          <CheckCircle2 className="h-6 w-6 text-green-500 shrink-0 mt-1" /> :
+                          <XCircle className="h-6 w-6 text-red-500 shrink-0 mt-1" />
+                        }
+                        <div>
+                          <CardTitle className="text-lg">
+                            Question {index + 1}: {question.question}
+                          </CardTitle>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            Votre réponse: <span className={isCorrect ? 'text-green-600' : 'text-red-600'}>
+                              {question.options[userAnswer]}
+                            </span>
+                          </p>
+                          {!isCorrect && (
+                            <p className="text-sm text-green-600 mt-1">
+                              Bonne réponse: {question.options[question.correct]}
+                            </p>
+                          )}
                         </div>
                       </div>
+                    </CardHeader>
+                    <CardContent>
+                      <Alert>
+                        <AlertDescription>
+                          <strong>Explication:</strong> {question.explanation}
+                        </AlertDescription>
+                      </Alert>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+
+              <div className="flex gap-4 justify-center">
+                <Button onClick={() => startQuiz(currentQuiz)} variant="outline">
+                  <RotateCcw className="h-4 w-4 mr-2" />
+                  Refaire le quiz
+                </Button>
+                <Button onClick={resetQuiz}>
+                  Autres quiz
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </CourseLayout>
+    );
+  }
+
+  return (
+    <CourseLayout title="Exercices pratiques - Quiz interactifs">
+      <div className="max-w-6xl mx-auto space-y-8">
+        <Alert>
+          <Trophy className="h-4 w-4" />
+          <AlertDescription>
+            Testez vos connaissances avec ces quiz interactifs ! Chaque quiz vous donnera des explications détaillées pour approfondir votre apprentissage.
+          </AlertDescription>
+        </Alert>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {quizzes.map((quiz) => {
+            const Icon = quiz.icon;
+            return (
+              <Card key={quiz.id} className="hover:shadow-lg transition-shadow cursor-pointer group">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                      <Icon className="h-6 w-6 text-primary" />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Checkbox
-                        checked={isCompleted}
-                        onCheckedChange={() => toggleExercise(exercise.id)}
-                      />
-                      <span className="text-sm text-muted-foreground">Terminé</span>
-                    </div>
+                    <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(quiz.difficulty)}`}>
+                      {quiz.difficulty}
+                    </span>
                   </div>
+                  <CardTitle className="text-xl">{quiz.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <h4 className="font-semibold">Objectifs :</h4>
-                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                      {exercise.objectives.map((obj, i) => (
-                        <li key={i}>{obj}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h4 className="font-semibold">Étapes à suivre :</h4>
-                    <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground">
-                      {exercise.steps.map((step, i) => (
-                        <li key={i} className="ml-2">{step}</li>
-                      ))}
-                    </ol>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h4 className="font-semibold">Validation :</h4>
-                    <ul className="space-y-1 text-sm text-muted-foreground">
-                      {exercise.validation.map((val, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0 mt-0.5" />
-                          <span>{val}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {quiz.questions.length} questions • ~{Math.ceil(quiz.questions.length * 1.5)} minutes
+                  </p>
+                  <Button 
+                    onClick={() => startQuiz(quiz.id)}
+                    className="w-full"
+                  >
+                    Commencer le quiz
+                  </Button>
                 </CardContent>
               </Card>
             );
           })}
-        </section>
+        </div>
 
-        {/* Conseils généraux */}
-        <section className="space-y-4">
-          <h2 className="text-3xl font-bold">Conseils pour réussir</h2>
-          
-          <Card>
-            <CardContent className="pt-6">
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span><strong>Prenez votre temps</strong> : Ne vous précipitez pas. Comprenez chaque étape avant de passer à la suivante.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span><strong>Documentez vos résultats</strong> : Prenez des notes, faites des captures d'écran. Cela vous aidera à réviser.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span><strong>Utilisez uniquement vos propres réseaux</strong> : Ne testez jamais ces techniques sur des réseaux qui ne vous appartiennent pas.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span><strong>Lisez les messages d'erreur</strong> : Ils contiennent souvent la solution au problème.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span><strong>Expérimentez</strong> : N'hésitez pas à modifier les commandes pour voir ce qui se passe.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span><strong>Consultez la documentation</strong> : Utilisez `man nmap`, `man aircrack-ng`, etc. pour plus d'informations.</span>
-                </li>
+        <Card className="bg-gradient-to-r from-primary/5 to-primary/10">
+          <CardHeader>
+            <CardTitle className="text-2xl">Conseils pour réussir</CardTitle>
+          </CardHeader>
+          <CardContent className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <h4 className="font-semibold">Avant de commencer :</h4>
+              <ul className="text-sm space-y-1 text-muted-foreground">
+                <li>• Relisez les cours correspondants</li>
+                <li>• Prenez votre temps pour réfléchir</li>
+                <li>• Lisez attentivement chaque question</li>
               </ul>
-            </CardContent>
-          </Card>
-        </section>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-semibold">Après le quiz :</h4>
+              <ul className="text-sm space-y-1 text-muted-foreground">
+                <li>• Lisez toutes les explications</li>
+                <li>• Refaites les quiz si nécessaire</li>
+                <li>• Approfondissez les sujets difficiles</li>
+              </ul>
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Navigation */}
         <div className="flex justify-between pt-8 border-t">
           <Button asChild variant="outline">
             <Link href="/courses/wpa3">

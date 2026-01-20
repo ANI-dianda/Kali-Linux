@@ -67,24 +67,26 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 text-center">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Apprenez la cybersécurité avec Kali Linux
-          </h2>
-          <p className="text-xl text-muted-foreground">
-            Une plateforme pédagogique progressive pour maîtriser les tests de réseau, 
-            le cracking Wi-Fi et les fondamentaux de la sécurité informatique
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Button asChild className="h-12 px-6 text-lg">
+      <section className="container mx-auto px-4 py-20 text-center">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              Apprenez la cybersécurité avec Kali Linux
+            </h2>
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+              Une plateforme pédagogique progressive pour maîtriser les tests de réseau, 
+              le cracking Wi-Fi et les fondamentaux de la sécurité informatique
+            </p>
+          </div>
+          <div className="flex gap-6 justify-center flex-wrap">
+            <Button asChild className="h-14 px-8 text-lg font-semibold">
               <Link href="/courses/introduction">
                 Commencer maintenant
               </Link>
             </Button>
-            <Button asChild variant="outline" className="h-12 px-6 text-lg">
+            <Button asChild variant="outline" className="h-14 px-8 text-lg font-semibold">
               <Link href="/courses/exercises">
-                Voir les exercices
+                Voir les quiz
               </Link>
             </Button>
           </div>
@@ -93,22 +95,28 @@ export default function Home() {
 
       {/* Features Grid */}
       <section className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="text-center mb-12">
+          <h3 className="text-3xl font-bold mb-4">Parcours d'apprentissage</h3>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Suivez notre programme structuré pour maîtriser la cybersécurité étape par étape
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <Link key={index} href={feature.href}>
-                <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1">
                   <CardHeader>
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-primary/10 rounded-lg">
+                      <div className="p-3 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl group-hover:from-primary/20 group-hover:to-primary/30 transition-all">
                         <Icon className="h-6 w-6 text-primary" />
                       </div>
-                      <CardTitle className="text-xl">{feature.title}</CardTitle>
+                      <CardTitle className="text-xl group-hover:text-primary transition-colors">{feature.title}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-base">
+                    <CardDescription className="text-base leading-relaxed">
                       {feature.description}
                     </CardDescription>
                   </CardContent>
