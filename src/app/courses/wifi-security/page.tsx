@@ -284,7 +284,7 @@ export default function WiFiSecurityPage() {
                     </Card>
                   ))}
 
-                  {section.content.subsections?.[0]?.items && (
+                  {(section.content.subsections as any)?.[0]?.items && (
                     <div className="grid md:grid-cols-2 gap-4">
                       {section.content.subsections.map((subsection, index) => (
                         <Card key={index}>
