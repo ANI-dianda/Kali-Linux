@@ -197,7 +197,7 @@ export default function ResourcesPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <CardDescription>{resource.description}</CardDescription>
-                    <Button asChild variant="outline" size="sm" className="w-full">
+                    <Button asChild variant="outline" className="w-full h-8 px-2 text-sm">
                       <a href={resource.url} target="_blank" rel="noopener noreferrer">
                         Accéder →
                       </a>
@@ -230,7 +230,7 @@ export default function ResourcesPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <CardDescription>{resource.description}</CardDescription>
-                    <Button asChild variant="outline" size="sm" className="w-full">
+                    <Button asChild variant="outline" className="w-full h-8 px-2 text-sm">
                       <a href={resource.url} target="_blank" rel="noopener noreferrer">
                         Visiter →
                       </a>
@@ -263,7 +263,7 @@ export default function ResourcesPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <CardDescription>{resource.description}</CardDescription>
-                    <Button asChild variant="outline" size="sm" className="w-full">
+                    <Button asChild variant="outline" className="w-full h-8 px-2 text-sm">
                       <a href={resource.url} target="_blank" rel="noopener noreferrer">
                         Télécharger →
                       </a>
@@ -296,7 +296,7 @@ export default function ResourcesPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <CardDescription>{resource.description}</CardDescription>
-                    <Button asChild variant="outline" size="sm" className="w-full">
+                    <Button asChild variant="outline" className="w-full h-8 px-2 text-sm">
                       <a href={resource.url} target="_blank" rel="noopener noreferrer">
                         Rejoindre →
                       </a>
@@ -332,7 +332,7 @@ export default function ResourcesPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <CardDescription>{resource.description}</CardDescription>
-                    <Button asChild variant="outline" size="sm" className="w-full">
+                    <Button asChild variant="outline" className="w-full h-8 px-2 text-sm">
                       <a href={resource.url} target="_blank" rel="noopener noreferrer">
                         Commencer →
                       </a>
