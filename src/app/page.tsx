@@ -71,12 +71,12 @@ export default function Home() {
             le cracking Wi-Fi et les fondamentaux de la sécurité informatique
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button asChild size="lg">
+            <Button asChild className="h-12 px-6 text-lg">
               <Link href="/courses/introduction">
                 Commencer maintenant
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild variant="outline" className="h-12 px-6 text-lg">
               <Link href="/courses/exercises">
                 Voir les exercices
               </Link>
