@@ -53,7 +53,7 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
             </Link>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="lg:hidden">
+                <Button variant="outline" className="lg:hidden h-10 w-10">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
@@ -66,7 +66,7 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
             </Sheet>
           </div>
           <div className="flex items-center gap-2">
-            <Button asChild variant="ghost" size="sm">
+            <Button asChild variant="ghost" className="h-8 px-2 text-sm">
               <Link href="/" prefetch={true}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Accueil
