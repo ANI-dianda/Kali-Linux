@@ -1,9 +1,9 @@
 "use client";
 
-import { useZoerIframe } from "@/hooks/useZoerIframe";
+import { useZoerlframe } from "@/hooks/useZoerlframe";
 
 export default function GlobalClientEffects() {
-  useZoerIframe();
+  useZoerlframe();
   return null;
 }
 

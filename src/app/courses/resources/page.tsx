@@ -44,18 +44,6 @@ export default function ResourcesPage() {
         icon: Video
       },
       {
-        title: "HackerSploit YouTube Channel",
-        description: "Tutoriels vidéo sur Kali Linux et le pentesting",
-        url: "https://www.youtube.com/@HackerSploit",
-        icon: Video
-      },
-      {
-        title: "NetworkChuck",
-        description: "Tutoriels accessibles sur la cybersécurité et les réseaux",
-        url: "https://www.youtube.com/@NetworkChuck",
-        icon: Video
-      },
-      {
         title: "Null Byte",
         description: "Tutoriels pratiques sur le hacking éthique",
         url: "https://null-byte.wonderhowto.com/",

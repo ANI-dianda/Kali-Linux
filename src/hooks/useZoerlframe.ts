@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-export function useZoerIframe() {
+export function useZoerlframe() {
   const router = useRouter();
   const pathname = usePathname();
   const [canGoBack, setCanGoBack] = useState(false);
@@ -46,4 +46,4 @@ export function useZoerIframe() {
   }, [pathname, canGoBack, canGoForward]);
 }
 
-export default useZoerIframe;
+export default useZoerlframe;
