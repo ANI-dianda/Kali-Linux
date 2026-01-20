@@ -66,7 +66,7 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
             </Sheet>
           </div>
           <div className="flex items-center gap-2">
-            <Button asChild variant="ghost" className="h-8 px-2 text-sm">
+            <Button asChild variant="outline" className="h-8 px-2 text-sm">
               <Link href="/" prefetch={true}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Accueil
