@@ -20,8 +20,7 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
     { name: "Introduction à Kali Linux", href: "/courses/introduction" },
     { name: "Fondamentaux du Hacking", href: "/courses/hacking-fundamentals" },
     { name: "Tester son réseau", href: "/courses/network-testing" },
-    { name: "Cracker WPA2", href: "/courses/wpa2-cracking" },
-    { name: "Comprendre WPA3", href: "/courses/wpa3" },
+    { name: "Sécurité WiFi", href: "/courses/wifi-security" },
     { name: "Exercices pratiques", href: "/courses/exercises" },
     { name: "Ressources", href: "/courses/resources" },
   ], []);

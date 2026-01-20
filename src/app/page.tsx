@@ -29,20 +29,14 @@ export default function Home() {
     },
     {
       icon: Wifi,
-      title: "Cracker WPA2",
-      description: "Comprenez les techniques de cracking WPA2 avec aircrack-ng",
-      href: "/courses/wpa2-cracking"
-    },
-    {
-      icon: Lock,
-      title: "Comprendre WPA3",
-      description: "Découvrez WPA3, ses avantages et pourquoi il est plus sécurisé",
-      href: "/courses/wpa3"
+      title: "Sécurité WiFi",
+      description: "Maîtrisez WPA2, WPA3 et les techniques d'audit des réseaux sans fil",
+      href: "/courses/wifi-security"
     },
     {
       icon: BookOpen,
       title: "Exercices pratiques",
-      description: "Mettez en pratique vos connaissances avec des exercices concrets",
+      description: "Mettez en pratique vos connaissances avec des quiz interactifs",
       href: "/courses/exercises"
     },
     {
