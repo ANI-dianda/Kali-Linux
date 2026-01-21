@@ -23,7 +23,7 @@ export function Tabs({ tabs, defaultTab }: TabsProps) {
         {tabs.map((tab) => (
           <Button
             key={tab.id}
-            variant={activeTab === tab.id ? "default" : "ghost"}
+            variant={activeTab === tab.id ? "default" : "outline"}
             onClick={() => setActiveTab(tab.id)}
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary px-4 py-2 text-sm font-medium whitespace-nowrap"
             data-state={activeTab === tab.id ? "active" : "inactive"}
