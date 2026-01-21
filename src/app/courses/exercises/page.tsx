@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useProgress } from "@/hooks/useProgress";
 import { 
   CheckCircle2, 
   XCircle, 
@@ -26,6 +27,7 @@ interface Question {
 }
 
 export default function ExercisesPage() {
+  const { saveQuizScore } = useProgress();
   const [currentQuiz, setCurrentQuiz] = useState<number | null>(null);
   const [answers, setAnswers] = useState<{[key: number]: number}>({});
   const [showResults, setShowResults] = useState(false);
@@ -144,6 +146,11 @@ export default function ExercisesPage() {
 
   const submitQuiz = () => {
     setShowResults(true);
+    // Sauvegarder le score
+    const score = getScore();
+    if (currentQuiz) {
+      saveQuizScore('exercises', `quiz-${currentQuiz}`, score);
+    }
   };
 
   const resetQuiz = () => {

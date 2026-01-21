@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Terminal, Download, Package, Zap, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CourseNavigation } from "@/components/CourseNavigation";
 import Link from "next/link";
 
 export default function IntroductionPage() {
@@ -254,6 +255,9 @@ export default function IntroductionPage() {
           </Card>
         </section>
 
+        {/* Navigation de fin de cours */}
+        <CourseNavigation currentCourseId="introduction" />
+        
         {/* Navigation */}
         <div className="flex justify-between pt-8 border-t">
           <Button asChild variant="outline">
@@ -262,8 +266,8 @@ export default function IntroductionPage() {
             </Link>
           </Button>
           <Button asChild>
-            <Link href="/courses/network-testing">
-              Suivant : Tester son réseau →
+            <Link href="/courses/hacking-fundamentals">
+              Suivant : Fondamentaux du Hacking →
             </Link>
           </Button>
         </div>

@@ -6,44 +6,55 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Shield, Network, Lock, BookOpen, Terminal, Wifi } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ProgressBar } from "@/components/ProgressBar";
+import { useProgress } from "@/hooks/useProgress";
+import { CheckCircle2 } from "lucide-react";
 
 export default function Home() {
+  const { isCourseCompleted } = useProgress();
+  
   const features = [
     {
       icon: Terminal,
       title: "Introduction à Kali Linux",
       description: "Découvrez Kali Linux, son installation et ses outils essentiels",
-      href: "/courses/introduction"
+      href: "/courses/introduction",
+      id: "introduction"
     },
     {
       icon: Shield,
       title: "Fondamentaux du Hacking",
       description: "Apprenez les concepts de base du hacking éthique et de la cybersécurité",
-      href: "/courses/hacking-fundamentals"
+      href: "/courses/hacking-fundamentals",
+      id: "hacking-fundamentals"
     },
     {
       icon: Network,
       title: "Tester son réseau",
       description: "Apprenez à analyser et tester la sécurité de votre réseau avec nmap et Wireshark",
-      href: "/courses/network-testing"
+      href: "/courses/network-testing",
+      id: "network-testing"
     },
     {
       icon: Wifi,
       title: "Sécurité WiFi",
       description: "Maîtrisez WPA2, WPA3 et les techniques d'audit des réseaux sans fil",
-      href: "/courses/wifi-security"
+      href: "/courses/wifi-security",
+      id: "wifi-security"
     },
     {
       icon: BookOpen,
       title: "Exercices pratiques",
       description: "Mettez en pratique vos connaissances avec des quiz interactifs",
-      href: "/courses/exercises"
+      href: "/courses/exercises",
+      id: "exercises"
     },
     {
       icon: Shield,
       title: "Ressources",
       description: "Tutoriels, outils et guides pour approfondir vos connaissances",
-      href: "/courses/resources"
+      href: "/courses/resources",
+      id: "resources"
     }
   ];
 
@@ -72,15 +83,21 @@ export default function Home() {
               le cracking Wi-Fi et les fondamentaux de la sécurité informatique
             </p>
           </div>
+          
+          {/* Barre de progression */}
+          <div className="max-w-2xl mx-auto">
+            <ProgressBar />
+          </div>
+          
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
             <Button asChild className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold">
               <Link href="/courses/introduction">
-                Commencer maintenant
+                Commencer le parcours
               </Link>
             </Button>
             <Button asChild variant="outline" className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold">
               <Link href="/courses/exercises">
-                Voir les quiz
+                Tester mes connaissances
               </Link>
             </Button>
           </div>
@@ -98,9 +115,15 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => {
             const Icon = feature.icon;
+            const isCompleted = isCourseCompleted(feature.id);
             return (
               <Link key={index} href={feature.href}>
-                <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1 relative">
+                  {isCompleted && (
+                    <div className="absolute top-3 right-3 z-10">
+                      <CheckCircle2 className="h-6 w-6 text-green-500 bg-white rounded-full" />
+                    </div>
+                  )}
                   <CardHeader className="pb-3 sm:pb-4">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                       <div className="p-2 sm:p-3 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl group-hover:from-primary/20 group-hover:to-primary/30 transition-all">
@@ -113,6 +136,11 @@ export default function Home() {
                     <CardDescription className="text-sm sm:text-base leading-relaxed">
                       {feature.description}
                     </CardDescription>
+                    {isCompleted && (
+                      <div className="mt-3 text-xs text-green-600 font-medium">
+                        ✓ Cours terminé
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </Link>
