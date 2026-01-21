@@ -31,9 +31,8 @@ export function ExpandableContent({ children, maxHeight = 200, previewLines = 3 
       <div className="flex justify-center mt-3">
         <Button
           variant="outline"
-          size="sm"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 h-8 px-3 text-sm"
         >
           {isExpanded ? (
             <>
