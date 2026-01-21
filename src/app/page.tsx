@@ -7,6 +7,7 @@ import { Shield, Network, Lock, BookOpen, Terminal, Wifi } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ProgressBar } from "@/components/ProgressBar";
+import { ThemeSelector } from "@/components/ThemeSelector";
 import { useProgress } from "@/hooks/useProgress";
 import { CheckCircle2 } from "lucide-react";
 
@@ -82,6 +83,11 @@ export default function Home() {
               Une plateforme pédagogique progressive pour maîtriser les tests de réseau, 
               le cracking Wi-Fi et les fondamentaux de la sécurité informatique
             </p>
+          </div>
+          
+          {/* Sélecteur de thème */}
+          <div className="max-w-4xl mx-auto">
+            <ThemeSelector />
           </div>
           
           {/* Barre de progression */}

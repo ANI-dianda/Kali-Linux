@@ -1,0 +1,212 @@
+/* OPTION A: THÈME MINIMALISTE (Linear/Notion) */
+.theme-minimal {
+  --background: #ffffff;
+  --foreground: #171717;
+  --card: #fafafa;
+  --card-foreground: #171717;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --border: #e5e5e5;
+  --radius: 6px;
+}
+
+.theme-minimal .card {
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+  box-shadow: none;
+  border-radius: 6px;
+}
+
+.theme-minimal .card:hover {
+  border-color: #000000;
+  transform: none;
+  box-shadow: 0 0 0 1px #000000;
+  transition: all 0.2s ease;
+}
+
+.theme-minimal h1 { font-size: 2rem; font-weight: 600; }
+.theme-minimal h2 { font-size: 1.5rem; font-weight: 600; }
+.theme-minimal h3 { font-size: 1.25rem; font-weight: 600; }
+
+.theme-minimal .btn-primary {
+  background: #000000;
+  border: 1px solid #000000;
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.theme-minimal .btn-outline {
+  background: transparent;
+  border: 1px solid #e5e5e5;
+  color: #171717;
+  border-radius: 6px;
+}
+
+/* OPTION B: THÈME PROPRE (Version nettoyée) */
+.theme-clean {
+  --background: #ffffff;
+  --foreground: #1f2937;
+  --card: #ffffff;
+  --card-foreground: #1f2937;
+  --primary: #1e40af;
+  --primary-foreground: #ffffff;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --border: #e5e7eb;
+  --radius: 8px;
+}
+
+.theme-clean .card {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.theme-clean .card:hover {
+  border-color: #1e40af;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+  transform: none;
+  transition: all 0.2s ease;
+}
+
+.theme-clean h1 { font-size: 2.25rem; font-weight: 700; }
+.theme-clean h2 { font-size: 1.75rem; font-weight: 600; }
+.theme-clean h3 { font-size: 1.5rem; font-weight: 600; }
+
+/* OPTION C: THÈME DOCUMENTATION (GitHub/GitLab) */
+.theme-docs {
+  --background: #ffffff;
+  --foreground: #24292f;
+  --card: #f6f8fa;
+  --card-foreground: #24292f;
+  --primary: #0969da;
+  --primary-foreground: #ffffff;
+  --muted: #f6f8fa;
+  --muted-foreground: #656d76;
+  --border: #d0d7de;
+  --radius: 6px;
+}
+
+.theme-docs {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.theme-docs .card {
+  border: 1px solid #d0d7de;
+  background: #ffffff;
+  box-shadow: none;
+  border-radius: 6px;
+}
+
+.theme-docs .card:hover {
+  border-color: #0969da;
+  box-shadow: 0 0 0 1px #0969da;
+  transform: none;
+}
+
+.theme-docs h1 { 
+  font-size: 2rem; 
+  font-weight: 600; 
+  border-bottom: 1px solid #d0d7de;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.theme-docs h2 { 
+  font-size: 1.5rem; 
+  font-weight: 600;
+  border-bottom: 1px solid #d0d7de;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.theme-docs .sidebar {
+  background: #f6f8fa;
+  border-right: 1px solid #d0d7de;
+}
+
+.theme-docs .btn-primary {
+  background: #0969da;
+  border: 1px solid #0969da;
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.theme-docs .btn-outline {
+  background: transparent;
+  border: 1px solid #d0d7de;
+  color: #24292f;
+  border-radius: 6px;
+}
+
+/* Suppression des animations pour tous les thèmes alternatifs */
+.theme-minimal *, .theme-clean *, .theme-docs * {
+  transition: all 0.2s ease !important;
+}
+
+.theme-minimal .group:hover, 
+.theme-clean .group:hover, 
+.theme-docs .group:hover {
+  transform: none !important;
+}
+
+/* Styles pour les cours avec thèmes */
+.theme-minimal .course-content h2,
+.theme-clean .course-content h2,
+.theme-docs .course-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.theme-minimal .course-content .card,
+.theme-clean .course-content .card,
+.theme-docs .course-content .card {
+  margin-bottom: 1.5rem;
+}
+
+/* Code blocks pour thème docs */
+.theme-docs .bg-muted {
+  background: #f6f8fa !important;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+}
+
+.theme-docs .font-mono {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* Progress bar pour chaque thème */
+.theme-minimal .progress-bar {
+  background: #e5e5e5;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.theme-minimal .progress-fill {
+  background: #000000;
+}
+
+.theme-clean .progress-bar {
+  background: #e5e7eb;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.theme-clean .progress-fill {
+  background: #1e40af;
+}
+
+.theme-docs .progress-bar {
+  background: #d0d7de;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.theme-docs .progress-fill {
+  background: #0969da;
+}
