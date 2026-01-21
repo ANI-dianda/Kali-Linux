@@ -19,7 +19,7 @@ export default function Home() {
       icon: Terminal,
       title: "Introduction à Kali Linux",
       description: "Découvrez Kali Linux, son installation et ses outils essentiels",
-      href: "/courses/introduction",
+      href: "/courses/introduction-enhanced",
       id: "introduction"
     },
     {

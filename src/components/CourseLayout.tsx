@@ -17,8 +17,8 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
   const [open, setOpen] = useState(false);
 
   const navigation = useMemo(() => [
-    { name: "Introduction à Kali Linux", href: "/courses/introduction" },
-    { name: "Fondamentaux du Hacking", href: "/courses/hacking-fundamentals" },
+    { name: "Introduction à Kali Linux", href: "/courses/introduction-enhanced" },
+    { name: "Fondamentaux du Hacking", href: "/courses/hacking-fundamentals-optimized" },
     { name: "Tester son réseau", href: "/courses/network-testing" },
     { name: "Sécurité WiFi", href: "/courses/wifi-security" },
     { name: "Exercices pratiques", href: "/courses/exercises" },

@@ -8,6 +8,7 @@ import GlobalClientEffects from "@/components/GlobalClientEffects";
 
 import "./globals.css";
 import "../styles/themes.css";
+import "../styles/enhanced.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
