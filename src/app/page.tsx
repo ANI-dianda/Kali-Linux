@@ -26,7 +26,7 @@ export default function Home() {
       icon: Shield,
       title: "Fondamentaux du Hacking",
       description: "Apprenez les concepts de base du hacking éthique et de la cybersécurité",
-      href: "/courses/hacking-fundamentals",
+      href: "/courses/hacking-fundamentals-optimized",
       id: "hacking-fundamentals"
     },
     {
@@ -124,26 +124,26 @@ export default function Home() {
             const isCompleted = isCourseCompleted(feature.id);
             return (
               <Link key={index} href={feature.href}>
-                <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1 relative">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1 relative compact-card">
                   {isCompleted && (
-                    <div className="absolute top-3 right-3 z-10">
-                      <CheckCircle2 className="h-6 w-6 text-green-500 bg-white rounded-full" />
+                    <div className="absolute top-2 right-2 z-10">
+                      <CheckCircle2 className="h-5 w-5 text-green-500 bg-white rounded-full" />
                     </div>
                   )}
-                  <CardHeader className="pb-3 sm:pb-4">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                      <div className="p-2 sm:p-3 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl group-hover:from-primary/20 group-hover:to-primary/30 transition-all">
-                        <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                  <CardHeader className="pb-2 sm:pb-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="p-2 bg-gradient-to-br from-primary/10 to-primary/20 rounded-lg group-hover:from-primary/20 group-hover:to-primary/30 transition-all">
+                        <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                       </div>
-                      <CardTitle className="text-lg sm:text-xl group-hover:text-primary transition-colors leading-tight">{feature.title}</CardTitle>
+                      <CardTitle className="text-base sm:text-lg group-hover:text-primary transition-colors leading-tight">{feature.title}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <CardDescription className="text-sm sm:text-base leading-relaxed">
+                    <CardDescription className="text-xs sm:text-sm leading-relaxed">
                       {feature.description}
                     </CardDescription>
                     {isCompleted && (
-                      <div className="mt-3 text-xs text-green-600 font-medium">
+                      <div className="mt-2 text-xs text-green-600 font-medium">
                         ✓ Cours terminé
                       </div>
                     )}

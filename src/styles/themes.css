@@ -180,33 +180,79 @@
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
-/* Progress bar pour chaque thème */
-.theme-minimal .progress-bar {
-  background: #e5e5e5;
-  height: 4px;
-  border-radius: 2px;
+/* Styles pour les composants d'optimisation */
+.theme-minimal .tabs-trigger[data-state="active"],
+.theme-clean .tabs-trigger[data-state="active"],
+.theme-docs .tabs-trigger[data-state="active"] {
+  border-bottom: 2px solid var(--primary);
+  background: transparent;
 }
 
-.theme-minimal .progress-fill {
-  background: #000000;
+.theme-minimal .collapsible-header:hover,
+.theme-clean .collapsible-header:hover,
+.theme-docs .collapsible-header:hover {
+  background: var(--muted);
 }
 
-.theme-clean .progress-bar {
-  background: #e5e7eb;
-  height: 6px;
-  border-radius: 3px;
+/* Table des matières compacte */
+.toc-compact {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
-.theme-clean .progress-fill {
-  background: #1e40af;
+.toc-compact .toc-item {
+  padding: 0.375rem 0.5rem;
+  border-radius: 0.375rem;
 }
 
-.theme-docs .progress-bar {
-  background: #d0d7de;
-  height: 4px;
-  border-radius: 2px;
+/* Contenu expandable */
+.expandable-content {
+  position: relative;
 }
 
-.theme-docs .progress-fill {
-  background: #0969da;
+.expandable-gradient {
+  background: linear-gradient(transparent, var(--background));
+  pointer-events: none;
+}
+
+/* Cards compactes */
+.compact-card {
+  padding: 0.75rem;
+}
+
+.compact-card .card-header {
+  padding-bottom: 0.5rem;
+}
+
+.compact-card .card-content {
+  padding-top: 0;
+}
+
+/* Responsive pour les onglets */
+@media (max-width: 768px) {
+  .tabs-list {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .tabs-list::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Animation pour les sections collapsibles */
+.collapsible-content {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
