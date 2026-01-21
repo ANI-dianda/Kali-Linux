@@ -61,24 +61,24 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="space-y-4">
-            <h2 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+      <section className="container mx-auto px-4 py-12 sm:py-16 lg:py-20 text-center">
+        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
+          <div className="space-y-3 sm:space-y-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent leading-tight">
               Apprenez la cybersécurité avec Kali Linux
             </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed px-2">
               Une plateforme pédagogique progressive pour maîtriser les tests de réseau, 
               le cracking Wi-Fi et les fondamentaux de la sécurité informatique
             </p>
           </div>
-          <div className="flex gap-6 justify-center flex-wrap">
-            <Button asChild className="h-14 px-8 text-lg font-semibold">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+            <Button asChild className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold">
               <Link href="/courses/introduction">
                 Commencer maintenant
               </Link>
             </Button>
-            <Button asChild variant="outline" className="h-14 px-8 text-lg font-semibold">
+            <Button asChild variant="outline" className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold">
               <Link href="/courses/exercises">
                 Voir les quiz
               </Link>
@@ -88,29 +88,29 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold mb-4">Parcours d'apprentissage</h3>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+      <section className="container mx-auto px-4 py-12 sm:py-16">
+        <div className="text-center mb-8 sm:mb-12">
+          <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Parcours d'apprentissage</h3>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
             Suivez notre programme structuré pour maîtriser la cybersécurité étape par étape
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <Link key={index} href={feature.href}>
                 <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl group-hover:from-primary/20 group-hover:to-primary/30 transition-all">
-                        <Icon className="h-6 w-6 text-primary" />
+                  <CardHeader className="pb-3 sm:pb-4">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-primary/10 to-primary/20 rounded-xl group-hover:from-primary/20 group-hover:to-primary/30 transition-all">
+                        <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                       </div>
-                      <CardTitle className="text-xl group-hover:text-primary transition-colors">{feature.title}</CardTitle>
+                      <CardTitle className="text-lg sm:text-xl group-hover:text-primary transition-colors leading-tight">{feature.title}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base leading-relaxed">
+                  <CardContent className="pt-0">
+                    <CardDescription className="text-sm sm:text-base leading-relaxed">
                       {feature.description}
                     </CardDescription>
                   </CardContent>

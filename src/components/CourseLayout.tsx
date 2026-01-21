@@ -45,19 +45,19 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b sticky top-0 bg-background z-50">
-        <div className="w-full px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="w-full px-2 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link href="/" className="flex items-center gap-2" prefetch={true}>
-              <Shield className="h-6 w-6 text-primary" />
-              <span className="font-bold hidden sm:inline">Kali Linux Academy</span>
+              <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              <span className="font-bold text-sm sm:text-base hidden xs:inline">Kali Linux Academy</span>
             </Link>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" className="lg:hidden h-10 w-10">
-                  <Menu className="h-5 w-5" />
+                <Button variant="outline" className="lg:hidden h-8 w-8 sm:h-10 sm:w-10">
+                  <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left">
+              <SheetContent side="left" className="w-[280px] sm:w-[350px]">
                 <div className="py-4">
                   <h3 className="font-semibold mb-4">Navigation</h3>
                   {NavigationContent}
@@ -65,11 +65,11 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
               </SheetContent>
             </Sheet>
           </div>
-          <div className="flex items-center gap-2">
-            <Button asChild variant="outline" className="h-8 px-2 text-sm">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Button asChild variant="outline" className="h-7 px-2 text-xs sm:h-8 sm:px-2 sm:text-sm">
               <Link href="/" prefetch={true}>
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Accueil
+                <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden xs:inline">Accueil</span>
               </Link>
             </Button>
             <ThemeToggle />
@@ -77,8 +77,8 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
         </div>
       </header>
 
-      <div className="w-full px-4 py-8 lg:px-8">
-        <div className="flex gap-8 max-w-7xl mx-auto">
+      <div className="w-full px-2 sm:px-4 py-4 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 max-w-7xl mx-auto">
           {/* Sidebar Navigation - Desktop */}
           <aside className="hidden lg:block w-72 shrink-0">
             <div className="sticky top-24 space-y-4">
@@ -89,8 +89,8 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
 
           {/* Main Content */}
           <main className="flex-1 min-w-0">
-            <h1 className="text-4xl font-bold mb-8">{title}</h1>
-            <div className="max-w-4xl">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 lg:mb-8">{title}</h1>
+            <div className="max-w-none lg:max-w-4xl">
               {children}
             </div>
           </main>

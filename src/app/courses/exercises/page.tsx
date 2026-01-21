@@ -305,37 +305,39 @@ export default function ExercisesPage() {
 
   return (
     <CourseLayout title="Exercices pratiques - Quiz interactifs">
-      <div className="max-w-6xl mx-auto space-y-8">
+      <div className="max-w-6xl mx-auto space-y-6 sm:space-y-8">
         <Alert>
           <Trophy className="h-4 w-4" />
-          <AlertDescription>
+          <AlertDescription className="text-sm sm:text-base">
             Testez vos connaissances avec ces quiz interactifs ! Chaque quiz vous donnera des explications détaillées pour approfondir votre apprentissage.
           </AlertDescription>
         </Alert>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {quizzes.map((quiz) => {
             const Icon = quiz.icon;
             return (
               <Card key={quiz.id} className="hover:shadow-lg transition-shadow cursor-pointer group">
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-6 w-6 text-primary" />
+                <CardHeader className="pb-3 sm:pb-4">
+                  <div className="flex flex-col gap-3 mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                        <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                      </div>
+                      <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(quiz.difficulty)}`}>
+                        {quiz.difficulty}
+                      </span>
                     </div>
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(quiz.difficulty)}`}>
-                      {quiz.difficulty}
-                    </span>
+                    <CardTitle className="text-lg sm:text-xl leading-tight">{quiz.title}</CardTitle>
                   </div>
-                  <CardTitle className="text-xl">{quiz.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-sm text-muted-foreground">
+                <CardContent className="space-y-4 pt-0">
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     {quiz.questions.length} questions • ~{Math.ceil(quiz.questions.length * 1.5)} minutes
                   </p>
                   <Button 
                     onClick={() => startQuiz(quiz.id)}
-                    className="w-full"
+                    className="w-full text-sm sm:text-base"
                   >
                     Commencer le quiz
                   </Button>
@@ -347,20 +349,20 @@ export default function ExercisesPage() {
 
         <Card className="bg-gradient-to-r from-primary/5 to-primary/10">
           <CardHeader>
-            <CardTitle className="text-2xl">Conseils pour réussir</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl">Conseils pour réussir</CardTitle>
           </CardHeader>
-          <CardContent className="grid md:grid-cols-2 gap-4">
+          <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <div className="space-y-2">
-              <h4 className="font-semibold">Avant de commencer :</h4>
-              <ul className="text-sm space-y-1 text-muted-foreground">
+              <h4 className="font-semibold text-sm sm:text-base">Avant de commencer :</h4>
+              <ul className="text-xs sm:text-sm space-y-1 text-muted-foreground">
                 <li>• Relisez les cours correspondants</li>
                 <li>• Prenez votre temps pour réfléchir</li>
                 <li>• Lisez attentivement chaque question</li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold">Après le quiz :</h4>
-              <ul className="text-sm space-y-1 text-muted-foreground">
+              <h4 className="font-semibold text-sm sm:text-base">Après le quiz :</h4>
+              <ul className="text-xs sm:text-sm space-y-1 text-muted-foreground">
                 <li>• Lisez toutes les explications</li>
                 <li>• Refaites les quiz si nécessaire</li>
                 <li>• Approfondissez les sujets difficiles</li>
