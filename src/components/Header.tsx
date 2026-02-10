@@ -1,13 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield, Menu, X } from 'lucide-react';
+import { Shield, Menu, X, LogOut, User } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { useState } from 'react';
 import { Button } from './ui/button';
+import { useAuth } from '@/contexts/AuthContext';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut, loading } = useAuth();
 
   const navLinks = [
     { href: '/', label: 'Accueil' },
@@ -50,6 +52,26 @@ export function Header() {
 
           {/* Right side */}
           <div className="flex items-center gap-2">
+            {!loading && (
+              user ? (
+                <div className="hidden md:flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">{user.email}</span>
+                  <Button variant="outline" onClick={() => signOut()} className="h-9 px-3">
+                    <LogOut className="h-4 w-4 mr-1" />
+                    Déconnexion
+                  </Button>
+                </div>
+              ) : (
+                <div className="hidden md:flex items-center gap-2">
+                  <Button asChild variant="outline" className="h-9 px-3">
+                    <Link href="/login">Connexion</Link>
+                  </Button>
+                  <Button asChild className="h-9 px-3">
+                    <Link href="/register">Inscription</Link>
+                  </Button>
+                </div>
+              )
+            )}
             <ThemeToggle />
             <Button
               variant="outline"
@@ -83,6 +105,28 @@ export function Header() {
             >
               GitHub
             </a>
+            {!loading && (
+              user ? (
+                <>
+                  <div className="pt-2 border-t">
+                    <p className="text-sm text-muted-foreground mb-2">{user.email}</p>
+                    <Button variant="outline" onClick={() => signOut()} className="w-full">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Déconnexion
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <div className="pt-2 border-t space-y-2">
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href="/login">Connexion</Link>
+                  </Button>
+                  <Button asChild className="w-full">
+                    <Link href="/register">Inscription</Link>
+                  </Button>
+                </div>
+              )
+            )}
           </nav>
         )}
       </div>
