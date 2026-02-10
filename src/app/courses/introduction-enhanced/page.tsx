@@ -8,6 +8,7 @@ import { Tabs } from "@/components/Tabs";
 import { TableOfContents } from "@/components/TableOfContents";
 import { ExpandableContent } from "@/components/ExpandableContent";
 import { CourseNavigation } from "@/components/CourseNavigation";
+import { CodeBlock } from "@/components/CodeBlock";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -177,14 +178,17 @@ export default function EnhancedIntroductionPage() {
                 <li>Exécutez la commande suivante :</li>
               </ol>
 
-              <div className="enhanced-code-block">
-                <div className="comment"># Scan ping simple</div>
-                <div className="command">sudo nmap -sn 192.168.1.0/24</div>
-                <div className="comment mt-3"># Résultat attendu :</div>
-                <div className="text-green-600">Starting Nmap...</div>
-                <div>Nmap scan report for 192.168.1.1</div>
-                <div>Host is up (0.0012s latency).</div>
-              </div>
+              <CodeBlock 
+                code={`# Scan ping simple
+sudo nmap -sn 192.168.1.0/24
+
+# Résultat attendu :
+Starting Nmap...
+Nmap scan report for 192.168.1.1
+Host is up (0.0012s latency).`}
+                language="bash"
+                title="Scanner votre réseau local"
+              />
 
               <div className="enhanced-alert success">
                 <CheckCircle2 className="h-5 w-5 shrink-0" />
