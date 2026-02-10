@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState, useMemo } from "react";
+import { Footer } from "@/components/Footer";
 
 interface CourseLayoutProps {
   children: React.ReactNode;
@@ -96,6 +97,8 @@ export function CourseLayout({ children, title }: CourseLayoutProps) {
           </main>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 }

@@ -1,61 +1,36 @@
 'use client';
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { useProgress } from "@/hooks/useProgress";
-import { Trophy, Star, Target } from "lucide-react";
+import { useProgress } from '@/hooks/useProgress';
+import { Award, BookOpen } from 'lucide-react';
 
 export function ProgressBar() {
   const { progress, getProgressPercentage } = useProgress();
   const percentage = getProgressPercentage();
 
-  const getLevelIcon = () => {
-    switch (progress.currentLevel) {
-      case 'Expert': return <Trophy className="h-4 w-4 text-yellow-500" />;
-      case 'Intermédiaire': return <Star className="h-4 w-4 text-blue-500" />;
-      default: return <Target className="h-4 w-4 text-green-500" />;
-    }
-  };
-
-  const getLevelColor = () => {
-    switch (progress.currentLevel) {
-      case 'Expert': return 'bg-yellow-100 text-yellow-800';
-      case 'Intermédiaire': return 'bg-blue-100 text-blue-800';
-      default: return 'bg-green-100 text-green-800';
-    }
-  };
-
   return (
-    <Card className="mb-6">
-      <CardContent className="pt-4">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            {getLevelIcon()}
-            <span className="font-semibold text-sm">Votre progression</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Badge className={getLevelColor()}>
-              {progress.currentLevel}
-            </Badge>
-            <span className="text-sm text-muted-foreground">
-              {progress.totalBadges} badges
-            </span>
-          </div>
+    <div className="bg-card border rounded-lg p-4 space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="font-semibold">Votre progression</h3>
+        <span className="text-2xl font-bold text-primary">{percentage}%</span>
+      </div>
+      
+      <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
+        <div 
+          className="bg-primary h-full transition-all duration-500 rounded-full"
+          style={{ width: `${percentage}%` }}
+        />
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="flex items-center gap-2">
+          <BookOpen className="h-4 w-4 text-primary" />
+          <span>{progress.completedLessons.length} leçons</span>
         </div>
-        
-        <div className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span>{percentage}% terminé</span>
-            <span>{Object.values(progress.courses).filter(c => c.completed).length}/6 cours</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
-              className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-500"
-              style={{ width: `${percentage}%` }}
-            />
-          </div>
+        <div className="flex items-center gap-2">
+          <Award className="h-4 w-4 text-primary" />
+          <span>{progress.badges.length} badges</span>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

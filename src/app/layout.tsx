@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
 import GlobalClientEffects from "@/components/GlobalClientEffects";
+import { LegalBanner } from "@/components/LegalBanner";
 
 import "./globals.css";
 import "../styles/themes.css";
@@ -39,6 +40,7 @@ export default function RootLayout({
       <ThemeInitializer />
       {children}
       <GlobalClientEffects />
+      <LegalBanner />
     </>
   );
 

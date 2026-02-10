@@ -2,42 +2,17 @@
 
 import { useState, useEffect } from 'react';
 
-export interface CourseProgress {
-  courseId: string;
-  completed: boolean;
-  completedAt?: Date;
-  quizScores?: { [quizId: string]: number };
+export interface Progress {
+  completedLessons: string[];
+  badges: string[];
+  quizScores: Record<string, number>;
 }
-
-export interface UserProgress {
-  courses: { [courseId: string]: CourseProgress };
-  totalBadges: number;
-  currentLevel: 'Débutant' | 'Intermédiaire' | 'Expert';
-}
-
-const COURSES_ORDER = [
-  'introduction',
-  'hacking-fundamentals', 
-  'network-testing',
-  'wifi-security',
-  'exercises',
-  'resources'
-];
-
-const COURSE_NAMES = {
-  'introduction': 'Introduction à Kali Linux',
-  'hacking-fundamentals': 'Fondamentaux du Hacking',
-  'network-testing': 'Tester son réseau',
-  'wifi-security': 'Sécurité WiFi',
-  'exercises': 'Exercices pratiques',
-  'resources': 'Ressources'
-};
 
 export function useProgress() {
-  const [progress, setProgress] = useState<UserProgress>({
-    courses: {},
-    totalBadges: 0,
-    currentLevel: 'Débutant'
+  const [progress, setProgress] = useState<Progress>({
+    completedLessons: [],
+    badges: [],
+    quizScores: {},
   });
 
   useEffect(() => {
@@ -47,85 +22,45 @@ export function useProgress() {
     }
   }, []);
 
-  const saveProgress = (newProgress: UserProgress) => {
+  const saveProgress = (newProgress: Progress) => {
     setProgress(newProgress);
     localStorage.setItem('kali-academy-progress', JSON.stringify(newProgress));
   };
 
-  const markCourseCompleted = (courseId: string) => {
+  const completeLesson = (lessonId: string) => {
     const newProgress = {
       ...progress,
-      courses: {
-        ...progress.courses,
-        [courseId]: {
-          courseId,
-          completed: true,
-          completedAt: new Date(),
-          quizScores: progress.courses[courseId]?.quizScores || {}
-        }
-      }
+      completedLessons: [...new Set([...progress.completedLessons, lessonId])],
     };
-
-    // Calculer le niveau
-    const completedCount = Object.values(newProgress.courses).filter(c => c.completed).length;
-    newProgress.currentLevel = completedCount >= 5 ? 'Expert' : completedCount >= 3 ? 'Intermédiaire' : 'Débutant';
-    newProgress.totalBadges = completedCount;
-
     saveProgress(newProgress);
   };
 
-  const saveQuizScore = (courseId: string, quizId: string, score: number) => {
-    const courseProgress = progress.courses[courseId] || { courseId, completed: false };
+  const addBadge = (badgeId: string) => {
     const newProgress = {
       ...progress,
-      courses: {
-        ...progress.courses,
-        [courseId]: {
-          ...courseProgress,
-          quizScores: {
-            ...courseProgress.quizScores,
-            [quizId]: score
-          }
-        }
-      }
+      badges: [...new Set([...progress.badges, badgeId])],
     };
-
     saveProgress(newProgress);
   };
 
-  const getNextCourse = (currentCourseId: string) => {
-    const currentIndex = COURSES_ORDER.indexOf(currentCourseId);
-    if (currentIndex >= 0 && currentIndex < COURSES_ORDER.length - 1) {
-      return {
-        id: COURSES_ORDER[currentIndex + 1],
-        name: COURSE_NAMES[COURSES_ORDER[currentIndex + 1] as keyof typeof COURSE_NAMES]
-      };
-    }
-    return null;
+  const saveQuizScore = (quizId: string, score: number) => {
+    const newProgress = {
+      ...progress,
+      quizScores: { ...progress.quizScores, [quizId]: score },
+    };
+    saveProgress(newProgress);
   };
 
   const getProgressPercentage = () => {
-    const completed = Object.values(progress.courses).filter(c => c.completed).length;
-    return Math.round((completed / COURSES_ORDER.length) * 100);
-  };
-
-  const isCourseCompleted = (courseId: string) => {
-    return progress.courses[courseId]?.completed || false;
-  };
-
-  const getCourseScore = (courseId: string, quizId: string) => {
-    return progress.courses[courseId]?.quizScores?.[quizId] || 0;
+    const totalLessons = 30; // À ajuster selon le nombre total de leçons
+    return Math.round((progress.completedLessons.length / totalLessons) * 100);
   };
 
   return {
     progress,
-    markCourseCompleted,
+    completeLesson,
+    addBadge,
     saveQuizScore,
-    getNextCourse,
     getProgressPercentage,
-    isCourseCompleted,
-    getCourseScore,
-    COURSES_ORDER,
-    COURSE_NAMES
   };
 }
