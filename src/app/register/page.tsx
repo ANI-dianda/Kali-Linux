@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/contexts/AuthContext';
@@ -50,9 +48,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-background flex items-center justify-center py-12 px-4">
+    <main className="min-h-screen bg-background flex items-center justify-center py-12 px-4">
         <Card className="w-full max-w-md">
           <CardHeader className="space-y-1 text-center">
             <div className="flex justify-center mb-4">
@@ -151,7 +147,5 @@ export default function RegisterPage() {
           </CardContent>
         </Card>
       </main>
-      <Footer />
-    </>
   );
 }

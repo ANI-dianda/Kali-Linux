@@ -1,12 +1,8 @@
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { Shield, Target, Heart, Code } from 'lucide-react';
 
 export default function AboutPage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-12 max-w-4xl">
           <div className="space-y-8">
             {/* Hero */}
@@ -132,7 +128,5 @@ export default function AboutPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </>
   );
 }

@@ -1,7 +1,5 @@
 'use client';
 
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { Shield, Network, Lock, BookOpen, Terminal, Wifi, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -69,10 +67,8 @@ export default function CoursesPage() {
   ];
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-12">
+    <main className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-12">
           {/* Hero */}
           <div className="text-center space-y-4 mb-12">
             <h1 className="text-4xl font-bold">Parcours d'apprentissage</h1>
@@ -165,7 +161,5 @@ export default function CoursesPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </>
   );
 }

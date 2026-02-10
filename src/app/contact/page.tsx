@@ -1,16 +1,12 @@
 'use client';
 
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { Mail, Github, Linkedin, Twitter, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function ContactPage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-12 max-w-4xl">
           <div className="space-y-8">
             {/* Hero */}
@@ -161,7 +157,5 @@ export default function ContactPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </>
   );
 }
