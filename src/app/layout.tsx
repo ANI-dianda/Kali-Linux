@@ -9,6 +9,7 @@ import { LegalBanner } from "@/components/LegalBanner";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { WelcomeModal } from "@/components/WelcomeModal";
 
 import "./globals.css";
 import "../styles/themes.css";
@@ -45,6 +46,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <WelcomeModal />
       </AuthProvider>
       <GlobalClientEffects />
       <LegalBanner />

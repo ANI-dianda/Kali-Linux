@@ -43,7 +43,6 @@ export default function RegisterPage() {
     } else {
       setSuccess(true);
       setLoading(false);
-      setTimeout(() => router.push('/login'), 2000);
     }
   };
 
@@ -71,9 +70,10 @@ export default function RegisterPage() {
               {success && (
                 <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3 flex items-start gap-2">
                   <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
-                  <p className="text-sm text-green-600 dark:text-green-400">
-                    Compte créé ! Vérifiez votre email puis connectez-vous.
-                  </p>
+                  <div className="text-sm text-green-600 dark:text-green-400">
+                    <p className="font-semibold">Compte créé avec succès ! 🎉</p>
+                    <p className="mt-1">Vérifiez votre email <strong>{email}</strong> pour confirmer votre compte.</p>
+                  </div>
                 </div>
               )}
 
