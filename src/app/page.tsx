@@ -61,17 +61,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Shield className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold">Kali Linux Academy</h1>
-          </div>
-          <ThemeToggle />
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12 sm:py-16 lg:py-20 text-center">
         <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
@@ -97,13 +86,13 @@ export default function Home() {
           
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
             <Button asChild className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold">
-              <Link href="/courses/introduction">
-                Commencer le parcours
+              <Link href="/courses/introduction-enhanced">
+                Commencer gratuitement
               </Link>
             </Button>
             <Button asChild variant="outline" className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold">
-              <Link href="/courses/exercises">
-                Tester mes connaissances
+              <Link href="/courses">
+                Voir tous les cours
               </Link>
             </Button>
           </div>
@@ -156,25 +145,23 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="bg-muted/50 py-16">
+      <section className="bg-muted/50 py-12 sm:py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-4">
-            <h3 className="text-3xl font-bold">Une approche pédagogique et progressive</h3>
-            <p className="text-lg text-muted-foreground">
+            <h3 className="text-2xl sm:text-3xl font-bold">Une approche pédagogique et progressive</h3>
+            <p className="text-base sm:text-lg text-muted-foreground">
               Cette plateforme est conçue pour tous les niveaux, du débutant à l'expert. 
               Chaque cours inclut des explications simples, des exemples concrets et des 
               exercices pratiques pour vous permettre de progresser à votre rythme.
             </p>
+            <div className="pt-4">
+              <Button asChild>
+                <Link href="/about">En savoir plus</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t py-8">
-        <div className="container mx-auto px-4 text-center text-muted-foreground">
-          <p>© 2026 Kali Linux Academy - Plateforme éducative de cybersécurité</p>
-        </div>
-      </footer>
     </div>
   );
 }

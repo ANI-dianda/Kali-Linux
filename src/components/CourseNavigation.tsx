@@ -13,8 +13,17 @@ interface CourseNavigationProps {
 
 export function CourseNavigation({ currentCourseId, onComplete }: CourseNavigationProps) {
   const { markCourseCompleted, getNextCourse, isCourseCompleted } = useProgress();
-  const nextCourse = getNextCourse(currentCourseId);
+  const nextCourseId = getNextCourse(currentCourseId);
   const isCompleted = isCourseCompleted(currentCourseId);
+
+  const courseNames: Record<string, string> = {
+    'introduction': 'Introduction à Kali Linux',
+    'hacking-fundamentals': 'Fondamentaux du Hacking',
+    'network-testing': 'Tester son réseau',
+    'wifi-security': 'Sécurité WiFi',
+    'exercises': 'Exercices pratiques',
+    'resources': 'Ressources'
+  };
 
   const handleComplete = () => {
     markCourseCompleted(currentCourseId);
@@ -62,12 +71,12 @@ export function CourseNavigation({ currentCourseId, onComplete }: CourseNavigati
                 <CheckCircle2 className="h-5 w-5" />
                 <span className="font-semibold">Cours terminé !</span>
               </div>
-              {nextCourse && (
+              {nextCourseId && (
                 <div className="space-y-2">
                   <p className="text-muted-foreground">Cours suivant recommandé :</p>
                   <Button asChild className="flex items-center gap-2">
-                    <Link href={`/courses/${nextCourse.id}`}>
-                      {nextCourse.name}
+                    <Link href={`/courses/${nextCourseId}`}>
+                      {courseNames[nextCourseId] || nextCourseId}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>

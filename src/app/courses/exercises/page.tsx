@@ -149,7 +149,7 @@ export default function ExercisesPage() {
     // Sauvegarder le score
     const score = getScore();
     if (currentQuiz) {
-      saveQuizScore('exercises', `quiz-${currentQuiz}`, score);
+      saveQuizScore(`quiz-${currentQuiz}`, score);
     }
   };
 

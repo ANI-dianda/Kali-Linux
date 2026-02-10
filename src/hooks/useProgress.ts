@@ -56,11 +56,38 @@ export function useProgress() {
     return Math.round((progress.completedLessons.length / totalLessons) * 100);
   };
 
+  const isCourseCompleted = (courseId: string) => {
+    return progress.completedLessons.includes(courseId);
+  };
+
+  const markCourseCompleted = (courseId: string) => {
+    completeLesson(courseId);
+  };
+
+  const getNextCourse = (currentCourseId: string) => {
+    const courseOrder = [
+      'introduction',
+      'hacking-fundamentals',
+      'network-testing',
+      'wifi-security',
+      'exercises',
+      'resources'
+    ];
+    const currentIndex = courseOrder.indexOf(currentCourseId);
+    if (currentIndex >= 0 && currentIndex < courseOrder.length - 1) {
+      return courseOrder[currentIndex + 1];
+    }
+    return null;
+  };
+
   return {
     progress,
     completeLesson,
     addBadge,
     saveQuizScore,
     getProgressPercentage,
+    isCourseCompleted,
+    markCourseCompleted,
+    getNextCourse,
   };
 }

@@ -34,7 +34,7 @@ export function LegalBanner() {
             Vous êtes responsable de vos actions.
           </p>
           <div className="flex gap-2">
-            <Button onClick={handleAccept} size="sm" className="bg-white text-yellow-700 hover:bg-gray-100">
+            <Button onClick={handleAccept} className="h-8 px-3 text-sm bg-white text-yellow-700 hover:bg-gray-100">
               J'ai compris et j'accepte
             </Button>
           </div>
