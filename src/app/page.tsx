@@ -10,7 +10,6 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { ThemeSelector } from "@/components/ThemeSelector";
 import { useProgress } from "@/hooks/useProgress";
 import { CheckCircle2 } from "lucide-react";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export default function Home() {
   const { isCourseCompleted } = useProgress();
@@ -61,8 +60,7 @@ export default function Home() {
   ];
 
   return (
-    <ProtectedRoute>
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12 sm:py-16 lg:py-20 text-center">
         <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
@@ -165,6 +163,5 @@ export default function Home() {
         </div>
       </section>
     </div>
-    </ProtectedRoute>
   );
 }

@@ -8,8 +8,6 @@ import GlobalClientEffects from "@/components/GlobalClientEffects";
 import { LegalBanner } from "@/components/LegalBanner";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { AuthProvider } from "@/contexts/AuthContext";
-import { WelcomeModal } from "@/components/WelcomeModal";
 
 import "./globals.css";
 import "../styles/themes.css";
@@ -42,12 +40,9 @@ export default function RootLayout({
   const content = (
     <>
       <ThemeInitializer />
-      <AuthProvider>
-        <Header />
-        {children}
-        <Footer />
-        <WelcomeModal />
-      </AuthProvider>
+      <Header />
+      {children}
+      <Footer />
       <GlobalClientEffects />
       <LegalBanner />
     </>
