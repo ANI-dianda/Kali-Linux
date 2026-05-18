@@ -1,6 +1,6 @@
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Orbitron, Exo_2 } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
@@ -13,23 +13,25 @@ import "./globals.css";
 import "../styles/themes.css";
 import "../styles/enhanced.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
   subsets: ["latin"],
   display: "swap",
   preload: true,
+  weight: "900",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const exo2 = Exo_2({
+  variable: "--font-exo-2",
   subsets: ["latin"],
   display: "swap",
-  preload: false,
+  preload: true,
+  weight: ["300", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Kali Linux Academy - Apprendre la cybersécurité",
-  description: "Plateforme pédagogique pour apprendre Kali Linux, les tests de réseau et la cybersécurité avec des exemples concrets",
+  title: "Académie Cybersécurité — Apprenez la cybersécurité en français",
+  description: "Plateforme gratuite d'apprentissage de la cybersécurité en français. Du débutant à l'expert : modules, labs, quiz et communauté.",
 };
 
 export default function RootLayout({
@@ -37,30 +39,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const content = (
-    <>
-      <ThemeInitializer />
-      <Header />
-      {children}
-      <Footer />
-      <GlobalClientEffects />
-      <LegalBanner />
-    </>
-  );
-
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${orbitron.variable} ${exo2.variable} font-exo-2 antialiased`}
       >
         <Toaster />
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          {content}
+          <ThemeInitializer />
+          <Header />
+          {children}
+          <Footer />
+          <GlobalClientEffects />
+          <LegalBanner />
         </ThemeProvider>
       </body>
     </html>

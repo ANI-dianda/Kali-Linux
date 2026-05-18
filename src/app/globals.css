@@ -118,6 +118,43 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-color: #0d001a;
+    background-image: linear-gradient(180deg, #1a0033 0%, #0d001a 100%);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><g fill="none" stroke="hsl(0, 0%, 100%)" stroke-width="0.3"><path d="M-400 0 l800 800 M-400 400 l800-800 M0 -400 l800 800 M400 -400 l-800 800" /></g></svg>'),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><filter id="n" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="10" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(#n)" opacity="0.15"/></svg>');
+    background-size: 800px, cover;
+    animation: grain 8s steps(10) infinite;
+    z-index: -1;
+    opacity: 0.2;
   }
 }
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 2px #67e8f9, 0 0 5px #67e8f9, 0 0 10px #22d3ee;
+}
+

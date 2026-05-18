@@ -1,91 +1,100 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield, Menu, X } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+import { usePathname } from 'next/navigation';
+import { Menu, X, Shield, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from './ui/button';
+
+const navLinks = [
+  { href: '/modules', label: 'Modules' },
+  { href: '/labs', label: 'Labs & Challenges' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/communaute', label: 'Communauté' },
+  { href: '/ressources', label: 'Ressources' },
+  { href: '/a-propos', label: 'À propos' },
+  { href: '/contact', label: 'Contact' },
+];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navLinks = [
-    { href: '/', label: 'Accueil' },
-    { href: '/courses', label: 'Parcours' },
-    { href: '/about', label: 'À propos' },
-    { href: '/contact', label: 'Contact' },
-  ];
+  const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/60 backdrop-blur-md">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="font-bold text-lg hidden sm:inline">Kali Linux Academy</span>
-            <span className="font-bold text-lg sm:hidden">KLA</span>
+          <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
+            <Shield className="h-7 w-7 text-cyan-400" strokeWidth={1.5} />
+            <span className="font-orbitron text-lg font-black tracking-wider text-white">
+              ACADÉMIE <span className="text-cyan-400">CYBER</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className={`px-3 py-2 rounded-md font-exo-2 text-sm font-semibold transition-colors ${
+                  pathname.startsWith(link.href)
+                    ? 'text-cyan-400 bg-cyan-400/10'
+                    : 'text-gray-300 hover:text-white hover:bg-white/10'
+                }`}
               >
                 {link.label}
               </Link>
             ))}
-            <a
-              href="https://github.com/ANI-dianda/Kali-Linux"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-            >
-              GitHub
-            </a>
           </nav>
 
-          {/* Right side */}
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Button
-              variant="outline"
-              className="md:hidden h-9 w-9 p-0"
+          {/* CTA + Mobile button */}
+          <div className="flex items-center gap-3">
+            <Link
+              href="/modules"
+              className="hidden sm:inline-flex items-center justify-center rounded-full bg-cyan-500 px-5 py-2 font-exo-2 text-sm font-bold text-black transition-all hover:bg-cyan-400 hover:scale-105"
+            >
+              Commencer
+            </Link>
+            <button
+              type="button"
+              className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-white/10"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-            </Button>
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="md:hidden py-4 space-y-3 border-t">
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div className="lg:hidden border-t border-white/10 bg-black/90 backdrop-blur-md">
+          <div className="container mx-auto px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
+                className={`block rounded-md px-4 py-3 font-exo-2 text-sm font-semibold transition-colors ${
+                  pathname.startsWith(link.href)
+                    ? 'text-cyan-400 bg-cyan-400/10'
+                    : 'text-gray-300 hover:text-white hover:bg-white/10'
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <a
-              href="https://github.com/ANI-dianda/Kali-Linux"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
+            <Link
+              href="/modules"
+              className="block mt-2 text-center rounded-full bg-cyan-500 px-5 py-3 font-exo-2 text-sm font-bold text-black"
               onClick={() => setIsMenuOpen(false)}
             >
-              GitHub
-            </a>
-          </nav>
-        )}
-      </div>
+              Commencer gratuitement
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
