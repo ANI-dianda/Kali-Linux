@@ -1,39 +1,73 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BookOpen, Monitor, TrendingUp, Shield } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
+const skills = ['Linux', 'Réseaux', 'Pentest', 'Audit sécurité'];
+
+const features = [
+  { icon: BookOpen,   label: 'Cours' },
+  { icon: Monitor,    label: 'Exercices' },
+  { icon: TrendingUp, label: 'Progression' },
+];
+
 export default function LandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#101010] text-white">
+    <div className="flex flex-col min-h-screen bg-[#050505] text-white">
 
-      {/* ── HEADER ── */}
       <Header />
 
-      {/* ── HERO ── */}
-      <main className="flex flex-1 flex-col items-center justify-center text-center px-4">
+      <main className="flex flex-1 flex-col items-center justify-center text-center px-6 py-16 sm:py-24">
 
-        <h1 className="font-orbitron text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-5 max-w-2xl">
-          Formation complète en<br />
-          <span className="text-[#5EFF8A]">Sécurité Informatique.</span>
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#59FF88]/25 bg-[#59FF88]/8 px-4 py-1.5 mb-10">
+          <Shield className="h-3.5 w-3.5 text-[#59FF88]" strokeWidth={2} />
+          <span className="font-exo-2 text-xs font-semibold tracking-widest text-[#59FF88] uppercase">
+            Parcours Expert
+          </span>
+        </div>
+
+        {/* Titre */}
+        <h1 className="font-orbitron text-[1.75rem] sm:text-4xl md:text-5xl font-black leading-snug mb-6 max-w-sm sm:max-w-xl">
+          Formation complète en{' '}
+          <span className="text-[#59FF88]">Sécurité Informatique.</span>
         </h1>
 
-        <p className="font-exo-2 text-base sm:text-lg text-gray-300 max-w-md mb-2">
-          Maîtrisez Linux, réseaux,<br />pentest et audit sécurité.
-        </p>
-        <p className="font-exo-2 text-sm text-gray-500 max-w-md mb-10">
-          Cours · Exercices · Progression
+        {/* Sous-titre */}
+        <p className="font-exo-2 text-sm sm:text-base text-gray-400 leading-relaxed max-w-xs sm:max-w-md mb-8">
+          Maîtrisez Linux, les réseaux, le pentest et l'audit sécurité grâce à un parcours complet vers l'expertise cybersécurité.
         </p>
 
+        {/* Compétences */}
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mb-10">
+          {skills.map((s, i) => (
+            <span key={s} className="flex items-center gap-3">
+              {i > 0 && <span className="text-[#59FF88]/40 text-xs">•</span>}
+              <span className="font-exo-2 text-xs text-gray-400">{s}</span>
+            </span>
+          ))}
+        </div>
+
+        {/* Blocs features */}
+        <div className="flex items-center justify-center gap-4 mb-12">
+          {features.map((f) => (
+            <div key={f.label} className="flex flex-col items-center gap-2 rounded-xl border border-white/8 bg-white/3 px-5 py-4 w-24">
+              <f.icon className="h-5 w-5 text-[#59FF88]" strokeWidth={1.5} />
+              <span className="font-exo-2 text-xs text-gray-400">{f.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
         <Link
           href="/modules"
-          className="inline-flex items-center justify-center gap-2 rounded-md bg-[#5EFF8A] px-10 py-4 font-exo-2 text-base font-bold text-[#101010] hover:brightness-110 hover:scale-105 transition-all touch-manipulation"
+          className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-xl bg-[#59FF88] px-8 py-4 font-exo-2 text-sm font-bold text-[#050505] transition-all hover:brightness-110 active:scale-95 touch-manipulation"
         >
-          Rejoindre le Cursus <ArrowRight className="h-5 w-5" />
+          Rejoindre le cursus <ArrowRight className="h-4 w-4" />
         </Link>
+
       </main>
 
-      {/* ── FOOTER ── */}
       <Footer />
     </div>
   );
