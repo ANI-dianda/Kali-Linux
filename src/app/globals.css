@@ -119,8 +119,7 @@
   }
   body {
     @apply text-foreground;
-    background-color: #0d001a;
-    background-image: linear-gradient(180deg, #1a0033 0%, #0d001a 100%);
+    background-color: #101010;
     overflow-x: hidden;
   }
 
@@ -154,7 +153,13 @@
   90% { transform: translate(-10%, 10%); }
 }
 
-.text-glow-cyan {
-  text-shadow: 0 0 2px #67e8f9, 0 0 5px #67e8f9, 0 0 10px #22d3ee;
+.text-glow-kali {
+  text-shadow: 0 0 8px #5EFF8A, 0 0 20px #5EFF8A55;
+}
+
+:root {
+  --kali: #5EFF8A;
+  --kali-dim: #5EFF8A20;
+  --kali-border: #5EFF8A30;
 }
 
