@@ -6,9 +6,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
 import GlobalClientEffects from "@/components/GlobalClientEffects";
 import { LegalBanner } from "@/components/LegalBanner";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-
 import "./globals.css";
 import "../styles/themes.css";
 import "../styles/enhanced.css";
@@ -52,9 +49,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ThemeInitializer />
-          <Header />
           {children}
-          <Footer />
           <GlobalClientEffects />
           <LegalBanner />
         </ThemeProvider>
