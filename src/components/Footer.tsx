@@ -21,9 +21,9 @@ const socials = [
 export function Footer() {
   return (
     <footer className="border-t border-white/8 bg-[#101010]">
-      <div className="container mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 font-exo-2 text-xs text-gray-600">
+      <div className="container mx-auto px-4 py-6 flex items-center justify-center font-exo-2 text-sm text-gray-500">
         <p>© {new Date().getFullYear()} DIANDA Jean Anicet — Ouagadougou, Burkina Faso</p>
-        <p>Débutant → Expert</p>
+
       </div>
     </footer>
   );
