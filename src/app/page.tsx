@@ -13,17 +13,16 @@ export default function LandingPage() {
       {/* ── HERO ── */}
       <main className="flex flex-1 flex-col items-center justify-center text-center px-4">
 
-        <h1 className="font-orbitron text-4xl sm:text-6xl md:text-7xl font-black leading-tight mb-6 max-w-3xl">
-          Formation Complète en<br />
+        <h1 className="font-orbitron text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-5 max-w-2xl">
+          Formation complète en<br />
           <span className="text-[#5EFF8A]">Sécurité Informatique.</span>
         </h1>
 
-        <p className="font-exo-2 text-base text-gray-400 max-w-md mb-2">
-          Cours · Exercices · Progression
+        <p className="font-exo-2 text-base sm:text-lg text-gray-300 max-w-md mb-2">
+          Maîtrisez Linux, réseaux,<br />pentest et audit sécurité.
         </p>
         <p className="font-exo-2 text-sm text-gray-500 max-w-md mb-10">
-          Linux · Réseaux · Pentest · Audit sécurité<br />
-          Parcours complet vers l'expertise cybersécurité.
+          Cours · Exercices · Progression
         </p>
 
         <Link
