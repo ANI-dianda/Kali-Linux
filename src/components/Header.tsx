@@ -2,17 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X, Terminal, Github } from 'lucide-react';
 import { useState } from 'react';
 
-const navLinks = [
-  { href: '/modules', label: 'Modules' },
-  { href: '/labs', label: 'Labs' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/communaute', label: 'Communauté' },
-  { href: '/ressources', label: 'Ressources' },
-  { href: '/a-propos', label: 'À propos' },
-];
+const navLinks: { href: string; label: string }[] = [];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,22 +43,16 @@ export function Header() {
             ))}
           </nav>
 
-          {/* CTA + Mobile */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/modules"
-              className="hidden sm:inline-flex items-center justify-center rounded-md bg-[#5EFF8A] px-5 py-2 font-exo-2 text-sm font-bold text-[#101010] transition-all hover:brightness-110 hover:scale-105"
-            >
-              Commencer
-            </Link>
-            <button
-              type="button"
-              className="lg:hidden p-2 text-gray-400 hover:text-white"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
+          {/* GitHub */}
+          <a
+            href="https://github.com/ANI-dianda/Kali-Linux"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-500 hover:text-[#5EFF8A] transition-colors"
+            aria-label="GitHub"
+          >
+            <Github className="h-5 w-5" />
+          </a>
         </div>
       </div>
 
