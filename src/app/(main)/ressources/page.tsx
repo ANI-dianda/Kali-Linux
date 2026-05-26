@@ -1,76 +1,95 @@
-import { ExternalLink, BookOpen, Youtube, Globe, Terminal } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
-export const metadata = { title: 'Ressources — Académie Cybersécurité' };
+export const metadata = { title: 'Ressources — KaliAcademy' };
 
-const resources = [
+const tools = [
   {
-    category: 'Plateformes d\'entraînement',
-    icon: Terminal,
-    color: 'text-cyan-400',
-    items: [
-      { name: 'TryHackMe', desc: 'Apprentissage guidé avec des labs virtuels', href: 'https://tryhackme.com', free: true },
-      { name: 'HackTheBox', desc: 'Challenges avancés et machines à pirater', href: 'https://hackthebox.com', free: true },
-      { name: 'PicoCTF', desc: 'CTF pour débutants, organisé par Carnegie Mellon', href: 'https://picoctf.org', free: true },
-      { name: 'Root-Me', desc: 'Plateforme française de challenges de sécurité', href: 'https://root-me.org', free: true },
-    ],
+    emoji: '💻',
+    name: 'VirtualBox',
+    desc: 'Virtualisation de machines pour créer ton laboratoire réseau personnel.',
+    label: 'Télécharger',
+    href: 'https://www.virtualbox.org/wiki/Downloads',
   },
   {
-    category: 'Formations officielles',
-    icon: BookOpen,
-    color: 'text-green-400',
-    items: [
-      { name: 'SecNumacadémie (ANSSI)', desc: 'Formation officielle française en cybersécurité', href: 'https://secnumacademie.gouv.fr', free: true },
-      { name: 'Cybrary', desc: 'Cours en ligne sur la cybersécurité', href: 'https://cybrary.it', free: true },
-      { name: 'SANS Reading Room', desc: 'Articles techniques de référence', href: 'https://sans.org/reading-room', free: true },
-    ],
+    emoji: '🌐',
+    name: 'GNS3',
+    desc: 'Émulateur réseau puissant pour simuler des équipements Cisco, Juniper, etc.',
+    label: 'Télécharger',
+    href: 'https://www.gns3.com/software/download',
   },
   {
-    category: 'Outils essentiels',
-    icon: Globe,
-    color: 'text-purple-400',
-    items: [
-      { name: 'Have I Been Pwned', desc: 'Vérifiez si vos données ont fuité', href: 'https://haveibeenpwned.com', free: true },
-      { name: 'VirusTotal', desc: 'Analysez des fichiers et URLs suspects', href: 'https://virustotal.com', free: true },
-      { name: 'Shodan', desc: 'Moteur de recherche pour appareils connectés', href: 'https://shodan.io', free: false },
-      { name: 'Exploit-DB', desc: 'Base de données d\'exploits publics', href: 'https://exploit-db.com', free: true },
-    ],
+    emoji: '🔍',
+    name: 'Wireshark',
+    desc: 'Analyseur de protocoles pour capturer et examiner le trafic réseau.',
+    label: 'Télécharger',
+    href: 'https://www.wireshark.org/download.html',
+  },
+  {
+    emoji: '📊',
+    name: 'Packet Tracer',
+    desc: 'Outil Cisco pour simuler et configurer des réseaux pédagogiques.',
+    label: 'Accéder',
+    href: 'https://www.netacad.com/courses/packet-tracer',
+  },
+  {
+    emoji: '🖥️',
+    name: 'VMware ESXi',
+    desc: 'Hyperviseur professionnel pour la virtualisation avancée.',
+    label: 'Accéder',
+    href: 'https://www.vmware.com/products/esxi-and-esx.html',
+  },
+  {
+    emoji: '🐧',
+    name: 'Ubuntu Server',
+    desc: 'Système d\'exploitation Linux pour tes serveurs réseau.',
+    label: 'Télécharger',
+    href: 'https://ubuntu.com/download/server',
   },
 ];
 
 export default function RessourcesPage() {
   return (
-    <div className="container mx-auto px-4 py-16 max-w-5xl">
-      <div className="text-center mb-16">
-        <h1 className="font-orbitron text-4xl sm:text-5xl font-black text-white mb-4">RESSOURCES</h1>
-        <p className="font-exo-2 text-gray-400 text-lg max-w-xl mx-auto">
-          Une sélection des meilleures ressources gratuites pour progresser en cybersécurité.
-        </p>
-      </div>
+    <div className="bg-[#050505] min-h-screen text-white">
+      <div className="container mx-auto px-4 py-16 max-w-3xl">
 
-      <div className="space-y-12">
-        {resources.map((section) => (
-          <div key={section.category}>
-            <div className="flex items-center gap-3 mb-6">
-              <section.icon className={`h-6 w-6 ${section.color}`} strokeWidth={1.5} />
-              <h2 className="font-orbitron text-lg font-bold text-white">{section.category}</h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {section.items.map((item) => (
-                <a key={item.name} href={item.href} target="_blank" rel="noopener noreferrer"
-                  className="flex items-start justify-between rounded-xl border border-white/10 bg-white/5 p-5 hover:border-cyan-400/30 transition-colors group">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-exo-2 text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">{item.name}</span>
-                      {item.free && <span className="rounded-full bg-green-400/10 border border-green-400/20 px-2 py-0.5 font-exo-2 text-xs text-green-400">Gratuit</span>}
-                    </div>
-                    <p className="font-exo-2 text-xs text-gray-400">{item.desc}</p>
-                  </div>
-                  <ExternalLink className="h-4 w-4 text-gray-500 group-hover:text-cyan-400 transition-colors shrink-0 mt-0.5 ml-3" />
-                </a>
-              ))}
-            </div>
+        {/* En-tête */}
+        <div className="mb-12">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="h-2 w-2 rounded-full bg-[#59FF88]" />
+            <span className="font-orbitron text-xs font-bold tracking-widest text-[#59FF88]">RESSOURCES</span>
           </div>
-        ))}
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-2xl">🔧</span>
+            <h1 className="font-orbitron text-2xl sm:text-3xl font-black text-white">Outils Essentiels</h1>
+          </div>
+          <p className="font-exo-2 text-sm text-gray-500">
+            Les logiciels et outils indispensables pour travailler sur les réseaux.
+          </p>
+        </div>
+
+        {/* Liste outils */}
+        <div className="space-y-3">
+          {tools.map((tool) => (
+            <div key={tool.name} className="flex items-center justify-between rounded-xl border border-white/8 bg-white/3 px-5 py-4 hover:border-[#59FF88]/30 transition-all group">
+              <div className="flex items-center gap-4 min-w-0">
+                <span className="text-xl shrink-0">{tool.emoji}</span>
+                <div className="min-w-0">
+                  <p className="font-exo-2 text-sm font-bold text-white">{tool.name}</p>
+                  <p className="font-exo-2 text-xs text-gray-500 truncate">{tool.desc}</p>
+                </div>
+              </div>
+              <a
+                href={tool.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 shrink-0 ml-4 font-exo-2 text-xs font-bold text-[#59FF88] hover:brightness-110 transition-all"
+              >
+                {tool.label} <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+          ))}
+        </div>
+
       </div>
     </div>
   );
