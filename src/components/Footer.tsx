@@ -56,7 +56,7 @@ export function Footer() {
 
         <div className="mt-8 pt-6 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-2 font-exo-2 text-xs text-gray-600">
           <p>© {new Date().getFullYear()} DIANDA Jean Anicet — Ouagadougou, Burkina Faso</p>
-          <p>Usage éducatif uniquement.</p>
+          <p className="text-gray-600">Gratuit · En français · Débutant → Expert</p>
         </div>
       </div>
     </footer>
